@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills 构建指南 · The Skill Builder's Gazette</title>
+<meta name="description" content="Anthropic 官方 Skills 指南的中文化学习笔记 · newsprint 排版">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper: #f0ebdd;
+    --paper-soft: #ebe5d3;
+    --paper-deep: #e1d9bf;
+    --ink: #1a1a1a;
+    --ink-soft: #2c2c2c;
+    --ink-mid: #4a4a4a;
+    --ink-tertiary: #6e6e6e;
+    --ink-faint: #888888;
+    --line: #1a1a1a;
+    --line-soft: #c4bca4;
+    --red: #a8423b;
+    --blue: #1f3a5f;
+    --code-bg: #2c2c2c;
+    --code-text: #ebe5d3;
+  }
+
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink-soft);
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+                 -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 25% 25%, rgba(0,0,0,0.012) 1px, transparent 1px),
+      radial-gradient(circle at 75% 75%, rgba(0,0,0,0.012) 1px, transparent 1px);
+    background-size: 4px 4px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 32px 28px 64px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .headline {
+    font-family: "Inter Tight", -apple-system, BlinkMacSystemFont,
+                 "PingFang SC", "Helvetica Neue", sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1.05;
+  }
+  .mono {
+    font-family: "JetBrains Mono", "SF Mono", Consolas, monospace;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── 报头 ─── */
+  .masthead {
+    border-top: 4px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 18px 0 14px;
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .masthead .lhs {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+  .masthead .center {
+    font-family: "Inter Tight", sans-serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--red);
+  }
+  .masthead .rhs {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--ink-faint);
+  }
+
+  /* ─── Hero 头条 ─── */
+  .hero {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 32px;
+    margin-bottom: 36px;
+  }
+  .hero .kicker {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.26em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-family: "Inter Tight", "PingFang SC", sans-serif;
+    font-weight: 900;
+    font-size: clamp(38px, 6vw, 72px);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 800;
+    color: var(--red);
+  }
+  .hero .deck {
+    font-family: "PingFang SC", sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-mid);
+    max-width: 880px;
+    margin-top: 8px;
+  }
+  .hero .byline {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    color: var(--ink-faint);
+    margin-top: 24px;
+    text-transform: uppercase;
+  }
+
+  /* ─── Stats Strip ─── */
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 40px;
+  }
+  .stats-strip .stat {
+    padding: 22px 24px;
+    border-right: 1px solid var(--line-soft);
+  }
+  .stats-strip .stat:last-child { border-right: none; }
+  .stats-strip .label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .stats-strip .value {
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: -0.03em;
+  }
+  .stats-strip .value .unit {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--ink-faint);
+    margin-left: 4px;
+    letter-spacing: 0;
+  }
+  .stats-strip .sub {
+    font-size: 12px;
+    color: var(--ink-tertiary);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  /* ─── 章节标题 ─── */
+  .section-header {
+    margin-bottom: 22px;
+  }
+  .section-header .kicker {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .section-header h2 {
+    font-family: "Inter Tight", "PingFang SC", sans-serif;
+    font-weight: 800;
+    font-size: 34px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .section-header .dek {
+    font-size: 14.5px;
+    color: var(--ink-mid);
+    margin-top: 6px;
+  }
+
+  /* ─── Introduction 引言区 ─── */
+  .intro {
+    margin-bottom: 50px;
+  }
+  .intro p {
+    font-size: 16px;
+    line-height: 1.78;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .intro .lead {
+    font-size: 18.5px;
+    line-height: 1.65;
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 22px;
+    border-left: 3px solid var(--red);
+    padding-left: 18px;
+  }
+  .intro em {
+    font-style: italic;
+    color: var(--ink);
+  }
+  .intro strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .intro .en-term {
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 500;
+    color: var(--blue);
+  }
+
+  /* ─── 双栏对比 ─── */
+  .compare-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 28px 0 14px;
+  }
+  .compare-2col .col {
+    background: var(--paper-soft);
+    border: 1px solid var(--line-soft);
+    padding: 22px 22px 18px;
+  }
+  .compare-2col .col .label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .compare-2col .col.bad .label { color: var(--red); }
+  .compare-2col .col.good .label { color: var(--blue); }
+  .compare-2col .col h4 {
+    font-family: "Inter Tight", "PingFang SC", sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .compare-2col .col p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-mid);
+    margin-bottom: 6px;
+  }
+  .compare-2col .col ul {
+    list-style: none;
+    margin-top: 6px;
+  }
+  .compare-2col .col li {
+    font-size: 13.5px;
+    line-height: 1.6;
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 4px;
+    color: var(--ink-mid);
+  }
+  .compare-2col .col.bad li::before {
+    content: "✗";
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-weight: 700;
+  }
+  .compare-2col .col.good li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--blue);
+    font-weight: 700;
+  }
+
+  /* ─── 章节卡片墙 ─── */
+  .chapters {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+    margin-bottom: 50px;
+  }
+  .chapter-card {
+    background: var(--paper-soft);
+    border: 1px solid var(--ink);
+    padding: 22px 22px 24px;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.15s, transform 0.15s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .chapter-card:hover {
+    background: var(--paper-deep);
+    transform: translateY(-2px);
+  }
+  .chapter-card.disabled {
+    background: transparent;
+    border: 1px dashed var(--line-soft);
+    cursor: not-allowed;
+  }
+  .chapter-card.disabled:hover {
+    transform: none;
+  }
+  .chapter-card .num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .chapter-card.disabled .num {
+    color: var(--ink-faint);
+  }
+  .chapter-card h3 {
+    font-family: "Inter Tight", "PingFang SC", sans-serif;
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .chapter-card.disabled h3 {
+    color: var(--ink-faint);
+  }
+  .chapter-card .desc {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--ink-mid);
+    flex-grow: 1;
+  }
+  .chapter-card .meta {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    color: var(--ink-faint);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .chapter-card .meta .status-ready { color: var(--blue); }
+  .chapter-card .meta .status-soon { color: var(--ink-faint); }
+
+  /* ─── 术语速查小卡 ─── */
+  .glossary {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+    margin-bottom: 50px;
+  }
+  .glossary .term {
+    border-top: 2px solid var(--ink);
+    padding: 12px 4px 0;
+  }
+  .glossary .term .en {
+    font-family: "Inter Tight", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 4px;
+  }
+  .glossary .term .cn {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .glossary .term .def {
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--ink-mid);
+  }
+
+  /* ─── Pull quote 抽出句 ─── */
+  .pull-quote {
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 28px 24px;
+    margin: 36px 0;
+    font-family: "Inter Tight", "PingFang SC", sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    text-align: center;
+  }
+  .pull-quote .attr {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 14px;
+    display: block;
+  }
+
+  /* ─── Footer ─── */
+  footer {
+    border-top: 4px solid var(--ink);
+    padding-top: 18px;
+    margin-top: 40px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* ─── 响应式 ─── */
+  @media (max-width: 720px) {
+    .stats-strip { grid-template-columns: repeat(2, 1fr); }
+    .stats-strip .stat:nth-child(2) { border-right: none; }
+    .compare-2col { grid-template-columns: 1fr; }
+    .pull-quote { font-size: 19px; padding: 22px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 报头 -->
+  <div class="masthead">
+    <div class="lhs">VOL.01 · 中文化学习笔记</div>
+    <div class="center">The Skill Builder's Gazette</div>
+    <div class="rhs">2026 · 05 · 27</div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="kicker">A Practical Field Manual · For Claude Skill Builders</div>
+    <h1>给 Claude 写一份<em>「会自动用」</em>的<br>能力包，从读懂这本指南开始。</h1>
+    <p class="deck">
+      Skill 不是新模型、不是新插件，而是一个<strong>装着说明书的文件夹</strong>——你把一项可重复的工作流程教给 Claude 一次，往后每次会话它都能直接用上，再不用解释。这份中文笔记把 Anthropic 33 页官方指南拆成 7 个一级板块，每节配上你能看懂的类比、例子和反例。
+    </p>
+    <div class="byline">中文重写 · 白笑 · 源自 Anthropic 官方 PDF · 33 pages</div>
+  </div>
+
+  <!-- 数据带 -->
+  <div class="stats-strip">
+    <div class="stat">
+      <div class="label">SKILL FOLDER</div>
+      <div class="value">1<span class="unit">个文件夹</span></div>
+      <div class="sub">一个 Skill 就是一个目录，核心文件是 SKILL.md</div>
+    </div>
+    <div class="stat">
+      <div class="label">PROGRESSIVE LOAD</div>
+      <div class="value">3<span class="unit">级加载</span></div>
+      <div class="sub">frontmatter → 正文 → 链接文件，按需展开节省 token</div>
+    </div>
+    <div class="stat">
+      <div class="label">TIME TO FIRST SKILL</div>
+      <div class="value">15–30<span class="unit">分钟</span></div>
+      <div class="sub">用 skill-creator 助手，单次坐下来就能跑通第一个</div>
+    </div>
+    <div class="stat">
+      <div class="label">DESCRIPTION LIMIT</div>
+      <div class="value">≤1024<span class="unit">字符</span></div>
+      <div class="sub">YAML 里的 description 是 Claude 判断要不要加载的唯一依据</div>
+    </div>
+  </div>
+
+  <!-- Introduction -->
+  <div class="section-header">
+    <div class="kicker">导言 · INTRODUCTION</div>
+    <h2>Skill 到底是个什么东西？为什么值得花半天学它？</h2>
+    <div class="dek">这一节回答四个问题：是什么、为什么、给谁的、读完能干嘛。</div>
+  </div>
+
+  <div class="intro">
+    <p class="lead">
+      <strong>Skill</strong>（能力包）是一组打包成「文件夹」的说明书，用来教 Claude 处理某一类具体任务或工作流程。Skill 是你能给 Claude 做的最强定制之一——与其每次会话都重新解释你的偏好、流程和领域知识，不如教它<em>一次</em>，往后<em>次次都能用</em>。
+    </p>
+
+    <p>
+      Skill 在<strong>重复性工作流</strong>上特别管用：按设计稿生成前端代码、用统一方法论做研究调查、按团队风格生成文档、编排多步骤业务流程。它能配合 Claude 自带的<span class="en-term">code execution</span>（代码执行）和<span class="en-term">document creation</span>（文档生成）使用。如果你已经在搭 MCP 集成，Skill 是再上一层的助攻——把「能调用工具」变成「能可靠地用对工具」。
+    </p>
+
+    <p>
+      这份指南把"构建一个有效 Skill"需要的所有事讲清楚——从规划、结构，到测试、分发。无论你是给自己写、给团队写、还是给社区写，都能在里面找到能用的模式和真实例子。
+    </p>
+
+    <div class="section-header" style="margin-top:32px; margin-bottom:16px;">
+      <div class="kicker">读完你将获得</div>
+    </div>
+
+    <div class="compare-2col">
+      <div class="col good">
+        <div class="label">YOU WILL LEARN · 你将学到</div>
+        <ul>
+          <li>Skill 结构的技术规范和最佳实践</li>
+          <li>「独立 Skill」与「MCP 增强型 Skill」两种模式</li>
+          <li>跨场景被验证过的有效模式</li>
+          <li>如何测试、迭代和分发你的 Skill</li>
+        </ul>
+      </div>
+      <div class="col good">
+        <div class="label">WHO THIS IS FOR · 写给谁的</div>
+        <ul>
+          <li>希望 Claude 按特定流程一致执行的开发者</li>
+          <li>想固化自己工作流的重度用户（power user）</li>
+          <li>想在团队内统一 Claude 使用方式的组织</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="margin-top:24px;">
+      <strong>两条阅读路径</strong>：如果你在做<em>独立 Skill</em>（不依赖 MCP），重点看「基础概念」「规划与设计」和模式中的第 1、2 类；如果你在为<em>已有的 MCP 集成</em>加一层智能，重点看「Skills + MCP」相关段落和模式中的第 3 类。两条路径技术规范一致，按你的场景挑相关的看。
+    </p>
+
+    <div class="pull-quote">
+      用 <span style="color:var(--red);">skill-creator</span> 助手，<br>
+      第一个能跑通的 Skill 15–30 分钟搞定。
+      <span class="attr">— Anthropic, The Complete Guide to Building Skills</span>
+    </div>
+  </div>
+
+  <!-- 7 章导航 -->
+  <div class="section-header">
+    <div class="kicker">本期目录 · 7 章导航</div>
+    <h2>按章阅读：从地基到上桌</h2>
+    <div class="dek">每章一页 HTML，点击进入。绿色"READY"表示已完成中文重写，灰色"SOON"还在写。</div>
+  </div>
+
+  <div class="chapters">
+    <a href="./ch1-fundamentals.html" class="chapter-card">
+      <div class="num">CHAPTER 01 · FUNDAMENTALS</div>
+      <h3>基础概念</h3>
+      <div class="desc">Skill 文件夹长什么样、三层渐进披露（Progressive Disclosure）是怎么省 token 的、为什么 Skill 能跨 Claude.ai / Code / API 用同一份、Skill 与 MCP 怎么配合。</div>
+      <div class="meta"><span class="status-ready">✓ READY · 已完成</span></div>
+    </a>
+
+    <div class="chapter-card disabled">
+      <div class="num">CHAPTER 02 · PLANNING & DESIGN</div>
+      <h3>规划与设计</h3>
+      <div class="desc">动笔前先定 2~3 个用例（use case），三大常见类别（文档创作 / 工作流自动化 / MCP 增强），技术规范、YAML frontmatter 字段、description 怎么写才会被触发。</div>
+      <div class="meta"><span class="status-soon">○ SOON · 待完成</span></div>
+    </div>
+
+    <div class="chapter-card disabled">
+      <div class="num">CHAPTER 03 · TESTING & ITERATION</div>
+      <h3>测试与迭代</h3>
+      <div class="desc">三层测试方法（手动 / 脚本 / API），三类测试用例（触发、功能、性能对比），skill-creator 助手怎么用，根据"欠触发 / 过触发 / 执行问题"信号反馈迭代。</div>
+      <div class="meta"><span class="status-soon">○ SOON · 待完成</span></div>
+    </div>
+
+    <div class="chapter-card disabled">
+      <div class="num">CHAPTER 04 · DISTRIBUTION & SHARING</div>
+      <h3>分发与分享</h3>
+      <div class="desc">当前分发模型、组织级 Skill 部署、Agent Skills 开放标准、通过 API 使用 Skill、GitHub 托管 + 安装指引、定位与营销 Skill 的话术。</div>
+      <div class="meta"><span class="status-soon">○ SOON · 待完成</span></div>
+    </div>
+
+    <div class="chapter-card disabled">
+      <div class="num">CHAPTER 05 · PATTERNS & TROUBLESHOOTING</div>
+      <h3>模式与排错</h3>
+      <div class="desc">「问题先行」vs「工具先行」两种切入，五种模式（顺序编排、多 MCP 协同、迭代精修、上下文感知、领域智能），常见错误的诊断与修复。</div>
+      <div class="meta"><span class="status-soon">○ SOON · 待完成</span></div>
+    </div>
+
+    <div class="chapter-card disabled">
+      <div class="num">CHAPTER 06 · RESOURCES</div>
+      <h3>资源与参考</h3>
+      <div class="desc">官方文档、示例 Skill 仓库、获取支持的渠道，以及三个附录：Quick Checklist 上传前自检表、YAML frontmatter 完整字段、Skill 完整示例索引。</div>
+      <div class="meta"><span class="status-soon">○ SOON · 待完成</span></div>
+    </div>
+  </div>
+
+  <!-- 术语速查 -->
+  <div class="section-header">
+    <div class="kicker">术语速查 · GLOSSARY</div>
+    <h2>看到这些英文不要慌</h2>
+    <div class="dek">本指南反复出现的核心词，先扫一眼，正文里碰到能对上号。</div>
+  </div>
+
+  <div class="glossary">
+    <div class="term">
+      <div class="en">Skill</div>
+      <div class="cn">能力包 / 技能包</div>
+      <div class="def">一个装着说明书的文件夹，教 Claude 怎么做一类活。</div>
+    </div>
+    <div class="term">
+      <div class="en">SKILL.md</div>
+      <div class="cn">能力包的主说明文件</div>
+      <div class="def">每个 Skill 必有的 Markdown 文件，文件名严格区分大小写。</div>
+    </div>
+    <div class="term">
+      <div class="en">YAML Frontmatter</div>
+      <div class="cn">YAML 头部元数据</div>
+      <div class="def">SKILL.md 顶部用 <code>---</code> 包起来的几行配置，告诉 Claude 这个 Skill 是什么、什么时候用。</div>
+    </div>
+    <div class="term">
+      <div class="en">Progressive Disclosure</div>
+      <div class="cn">渐进披露 / 按需展开</div>
+      <div class="def">三层加载策略——只在需要时才把更多内容加载进 Claude 上下文，节省 token。</div>
+    </div>
+    <div class="term">
+      <div class="en">MCP (Model Context Protocol)</div>
+      <div class="cn">模型上下文协议</div>
+      <div class="def">让 Claude 连接外部服务（Notion / Linear / Asana 等）的协议层。</div>
+    </div>
+    <div class="term">
+      <div class="en">Composability</div>
+      <div class="cn">可组合性</div>
+      <div class="def">多个 Skill 可以同时启用、互不打架，你写的 Skill 要假设它不是唯一的。</div>
+    </div>
+    <div class="term">
+      <div class="en">Portability</div>
+      <div class="cn">可移植性</div>
+      <div class="def">同一个 Skill 在 Claude.ai / Claude Code / API 上行为一致，写一次到处能用。</div>
+    </div>
+    <div class="term">
+      <div class="en">kebab-case</div>
+      <div class="cn">短横线小写命名</div>
+      <div class="def">用短横线分词、全小写。Skill 文件夹名和 name 字段必须这种风格，例如 <code>notion-project-setup</code>。</div>
+    </div>
+    <div class="term">
+      <div class="en">Trigger Phrase</div>
+      <div class="cn">触发短语</div>
+      <div class="def">用户可能说出来、让 Claude 决定加载这个 Skill 的关键说法。</div>
+    </div>
+    <div class="term">
+      <div class="en">Use Case</div>
+      <div class="cn">用例 / 使用场景</div>
+      <div class="def">动笔前要先列出 2-3 个具体场景，Skill 是为它们写的。</div>
+    </div>
+    <div class="term">
+      <div class="en">skill-creator</div>
+      <div class="cn">Skill 创建助手</div>
+      <div class="def">Anthropic 官方提供的"用来造 Skill 的 Skill"，能从自然语言描述生成完整 SKILL.md。</div>
+    </div>
+    <div class="term">
+      <div class="en">Connector</div>
+      <div class="cn">连接器</div>
+      <div class="def">MCP server 在 Claude.ai 界面里的称呼，连上之后 Claude 就能调用对应服务。</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div>SKILLS BUILDING GUIDE · v0.1</div>
+    <div>白笑 · 中文化学习笔记</div>
+    <div>SOURCE: ANTHROPIC PDF · 33 PAGES</div>
+  </footer>
+
+</div>
+</body>
+</html>

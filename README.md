@@ -12,6 +12,7 @@
 |---|---|---|---|---|
 | 运动科学手册 | HTML 技术手册 + 视觉化 | [打开 →](https://baixiao8.github.io/study/marathon/) | [marathon/README.md](./marathon/README.md) | v4 |
 | 思考进化 | Bento Box 单页 + UX 资料库 | [打开 →](https://baixiao8.github.io/study/thinking-evolution/) | [thinking-evolution/README.md](./thinking-evolution/README.md) | v0.1 |
+| Skills 构建指南（中文化笔记） | Newsprint 风格 HTML 学习笔记 | — | [skills-building-guide/README.md](./skills-building-guide/README.md) | v0.1 |
 
 后续会陆续加入其他学习项目,每个一个独立子目录,配独立的可分享短链。
 
@@ -55,4 +56,4 @@ git add . && git commit -m "add: 新项目" && git push
 
 ---
 
-*Last updated: 2026-05-22*
+*Last updated: 2026-05-27*
