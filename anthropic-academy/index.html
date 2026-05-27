@@ -1,0 +1,2308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anthropic Academy 学院全景笔记 · The Academy Field Notes</title>
+<meta name="description" content="Anthropic Skilljar 18 门免费课程的中文导览本 · 不上课也能拿到核心 · newsprint 排版">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper: #f0ebdd;
+    --paper-soft: #ebe5d3;
+    --paper-deep: #e1d9bf;
+    --ink: #1a1a1a;
+    --ink-soft: #2c2c2c;
+    --ink-mid: #4a4a4a;
+    --ink-tertiary: #6e6e6e;
+    --ink-faint: #888888;
+    --line: #1a1a1a;
+    --line-soft: #c4bca4;
+    --red: #a8423b;
+    --blue: #1f3a5f;
+    --gold: #c9a14e;
+    --green: #5d7a4a;
+    --code-bg: #1f1d18;
+    --code-text: #ebe5d3;
+  }
+
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    background: var(--paper);
+    color: var(--ink-soft);
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 25% 25%, rgba(0,0,0,0.012) 1px, transparent 1px),
+      radial-gradient(circle at 75% 75%, rgba(0,0,0,0.012) 1px, transparent 1px);
+    background-size: 4px 4px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page { max-width: 1240px; margin: 0 auto; padding: 32px 28px 64px; position: relative; z-index: 1; }
+  .page-narrow { max-width: 940px; margin: 0 auto; padding: 32px 28px 64px; position: relative; z-index: 1; }
+
+  .headline {
+    font-family: "Inter Tight", -apple-system, "PingFang SC", sans-serif;
+    font-weight: 800; letter-spacing: -0.02em; color: var(--ink); line-height: 1.05;
+  }
+  .mono { font-family: "JetBrains Mono", monospace; letter-spacing: 0.06em; }
+
+  /* ─── 报头 ─── */
+  .masthead {
+    border-top: 4px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 18px 0 14px; margin-bottom: 22px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: 14px;
+  }
+  .masthead .lhs, .masthead .rhs {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.22em; color: var(--ink-faint); text-transform: uppercase;
+  }
+  .masthead .center {
+    font-family: "Inter Tight", sans-serif; font-style: italic; font-weight: 700;
+    font-size: 22px; letter-spacing: -0.01em; color: var(--red);
+  }
+  .masthead a { color: var(--ink-faint); text-decoration: none; border-bottom: 1px dotted var(--ink-faint); }
+  .masthead a:hover { color: var(--red); border-bottom-color: var(--red); }
+
+  .topbar {
+    border-top: 4px solid var(--ink); border-bottom: 1px solid var(--ink);
+    padding: 14px 0 11px; margin-bottom: 28px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: 10px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px; letter-spacing: 0.22em; color: var(--ink-faint); text-transform: uppercase;
+  }
+  .topbar a { color: var(--ink-faint); text-decoration: none; border-bottom: 1px dotted var(--ink-faint); }
+  .topbar a:hover { color: var(--red); border-bottom-color: var(--red); }
+  .topbar .center {
+    font-family: "Inter Tight", sans-serif; font-style: italic; font-weight: 700;
+    color: var(--red); letter-spacing: -0.01em; font-size: 14px; text-transform: none;
+  }
+
+  /* ─── Hero ─── */
+  .hero { border-bottom: 1px solid var(--line); padding-bottom: 32px; margin-bottom: 36px; }
+  .hero .kicker, .chapter-head .kicker {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.26em;
+    color: var(--red); text-transform: uppercase; margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-family: "Inter Tight", "PingFang SC", sans-serif;
+    font-weight: 900; font-size: clamp(38px, 6vw, 72px);
+    line-height: 1.0; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 18px;
+  }
+  .hero h1 em { font-style: italic; font-weight: 800; color: var(--red); }
+  .hero .deck {
+    font-family: "PingFang SC", sans-serif;
+    font-size: 17px; line-height: 1.55; color: var(--ink-mid);
+    max-width: 880px; margin-top: 8px;
+  }
+  .hero .byline {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px; letter-spacing: 0.18em; color: var(--ink-faint);
+    margin-top: 24px; text-transform: uppercase;
+  }
+  .chapter-head { border-bottom: 1px solid var(--line); padding-bottom: 26px; margin-bottom: 34px; }
+  .chapter-head h1 {
+    font-family: "Inter Tight", "PingFang SC", sans-serif;
+    font-weight: 900; font-size: clamp(32px, 5vw, 54px);
+    line-height: 1.05; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 14px;
+  }
+  .chapter-head h1 em { font-style: italic; color: var(--red); font-weight: 800; }
+  .chapter-head .dek { font-size: 16px; color: var(--ink-mid); line-height: 1.6; max-width: 760px; }
+
+  /* ─── Stats Strip ─── */
+  .stats-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    margin-bottom: 40px;
+  }
+  .stats-strip .stat { padding: 22px 24px; border-right: 1px solid var(--line-soft); }
+  .stats-strip .stat:last-child { border-right: none; }
+  .stats-strip .label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5px; font-weight: 600; letter-spacing: 0.22em;
+    color: var(--ink-faint); text-transform: uppercase; margin-bottom: 10px;
+  }
+  .stats-strip .value {
+    font-family: "Inter Tight", sans-serif; font-weight: 800;
+    font-size: 40px; line-height: 1; color: var(--ink); letter-spacing: -0.03em;
+  }
+  .stats-strip .value .unit {
+    font-weight: 500; font-size: 14px; color: var(--ink-faint); margin-left: 4px; letter-spacing: 0;
+  }
+  .stats-strip .sub { font-size: 12px; color: var(--ink-tertiary); margin-top: 6px; line-height: 1.4; }
+
+  /* ─── Section Header ─── */
+  .section-header { margin-bottom: 22px; margin-top: 50px; }
+  .section-header:first-of-type { margin-top: 0; }
+  .section-header .kicker {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.24em;
+    color: var(--red); text-transform: uppercase; margin-bottom: 10px;
+  }
+  .section-header h2 {
+    font-family: "Inter Tight", "PingFang SC", sans-serif;
+    font-weight: 800; font-size: 34px; letter-spacing: -0.02em;
+    color: var(--ink); line-height: 1.1;
+  }
+  .section-header .dek { font-size: 14.5px; color: var(--ink-mid); margin-top: 6px; max-width: 760px; }
+
+  /* h2/h3 in-chapter */
+  h2 {
+    font-family: "Inter Tight", "PingFang SC", sans-serif;
+    font-weight: 800; font-size: 28px; letter-spacing: -0.018em;
+    color: var(--ink); line-height: 1.2;
+    margin-top: 44px; margin-bottom: 14px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--line-soft);
+  }
+  h2 .pre {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px; font-weight: 700; color: var(--red);
+    letter-spacing: 0.16em; display: block; margin-bottom: 6px;
+  }
+  h3 {
+    font-family: "Inter Tight", "PingFang SC", sans-serif;
+    font-weight: 700; font-size: 20px; letter-spacing: -0.01em;
+    color: var(--ink); margin-top: 28px; margin-bottom: 10px;
+  }
+  h4 {
+    font-family: "Inter Tight", "PingFang SC", sans-serif;
+    font-weight: 700; font-size: 16px; color: var(--ink);
+    margin-top: 18px; margin-bottom: 8px;
+  }
+
+  p { font-size: 15.5px; line-height: 1.78; color: var(--ink-soft); margin-bottom: 14px; }
+  p.lead {
+    font-size: 17.5px; line-height: 1.65; color: var(--ink); font-weight: 500;
+    margin-bottom: 18px; border-left: 3px solid var(--red); padding-left: 18px;
+  }
+  em { font-style: italic; color: var(--ink); }
+  strong { color: var(--ink); font-weight: 700; }
+  .en { font-family: "Inter Tight", sans-serif; font-weight: 500; color: var(--blue); font-style: normal; }
+
+  code {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.9em; background: var(--paper-deep); color: var(--ink);
+    padding: 1px 6px; border-radius: 2px; letter-spacing: 0;
+  }
+  pre {
+    background: var(--code-bg); color: var(--code-text);
+    border-left: 3px solid var(--red); padding: 18px 22px; margin: 18px 0 22px;
+    overflow-x: auto;
+    font-family: "JetBrains Mono", "SF Mono", monospace;
+    font-size: 13px; line-height: 1.7; letter-spacing: 0;
+  }
+
+  ul, ol { margin: 8px 0 18px; padding-left: 24px; }
+  ul li, ol li { font-size: 15px; line-height: 1.75; margin-bottom: 6px; color: var(--ink-soft); }
+  ul li::marker { color: var(--red); }
+
+  a { color: var(--red); text-decoration: none; border-bottom: 1px dotted var(--red); }
+  a:hover { background: rgba(168, 66, 59, 0.08); }
+
+  /* ─── 章节卡 ─── */
+  .chapters {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px; margin-bottom: 50px;
+  }
+  .chapter-card {
+    background: var(--paper-soft); border: 1px solid var(--ink);
+    padding: 22px 22px 24px;
+    display: flex; flex-direction: column;
+    transition: background 0.15s, transform 0.15s;
+    text-decoration: none; color: inherit;
+    border-bottom: 1px solid var(--ink);
+  }
+  .chapter-card:hover {
+    background: var(--paper-deep); transform: translateY(-2px); background-color: var(--paper-deep);
+  }
+  .chapter-card .num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.24em;
+    color: var(--red); text-transform: uppercase; margin-bottom: 10px;
+  }
+  .chapter-card h3 {
+    font-family: "Inter Tight", "PingFang SC", sans-serif;
+    font-size: 21px; font-weight: 800; line-height: 1.2; letter-spacing: -0.015em;
+    color: var(--ink); margin-bottom: 10px; margin-top: 0;
+  }
+  .chapter-card .desc { font-size: 13.5px; line-height: 1.6; color: var(--ink-mid); flex-grow: 1; }
+  .chapter-card .meta {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; color: var(--ink-faint); letter-spacing: 0.16em;
+    text-transform: uppercase; margin-top: 14px; padding-top: 12px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .chapter-card .meta .arrow { float: right; color: var(--red); }
+
+  /* ─── 课程精华卡 ─── */
+  .course-card {
+    border: 1px solid var(--line-soft); background: var(--paper-soft);
+    margin: 0 0 22px; padding: 0;
+  }
+  .course-card .course-head {
+    border-bottom: 1px solid var(--line-soft);
+    padding: 16px 22px 14px;
+    background: var(--paper-deep);
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .course-card .course-head .title-block { flex: 1; min-width: 280px; }
+  .course-card .course-head .num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.22em;
+    color: var(--red); text-transform: uppercase; margin-bottom: 6px;
+  }
+  .course-card .course-head h3 {
+    font-family: "Inter Tight", "PingFang SC", sans-serif;
+    font-size: 22px; font-weight: 800; line-height: 1.2;
+    color: var(--ink); margin: 0; letter-spacing: -0.01em;
+  }
+  .course-card .course-head .en-title {
+    font-family: "Inter Tight", sans-serif;
+    font-size: 13px; font-weight: 500; color: var(--blue);
+    font-style: italic; margin-top: 4px; display: block;
+  }
+  .course-card .course-head .badges {
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+  }
+  .course-card .badge {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    padding: 4px 8px; text-transform: uppercase;
+    background: var(--paper); border: 1px solid var(--line-soft); color: var(--ink-mid);
+  }
+  .course-card .badge.time { color: var(--blue); border-color: var(--blue); }
+  .course-card .badge.lvl-foundation { color: var(--green); border-color: var(--green); }
+  .course-card .badge.lvl-build { color: var(--red); border-color: var(--red); }
+  .course-card .badge.lvl-advanced { color: var(--gold); border-color: var(--gold); background: rgba(201,161,78,0.1); }
+  .course-card .badge.new { background: var(--red); color: var(--paper); border-color: var(--red); }
+
+  .course-card .course-body { padding: 18px 22px 8px; }
+  .course-card .field {
+    display: grid; grid-template-columns: 84px 1fr;
+    gap: 14px; padding: 10px 0;
+    border-bottom: 1px dotted var(--line-soft);
+  }
+  .course-card .field:last-child { border-bottom: none; }
+  .course-card .field .key {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+    color: var(--ink-faint); text-transform: uppercase;
+    padding-top: 3px;
+  }
+  .course-card .field .val { font-size: 14px; line-height: 1.7; color: var(--ink-soft); }
+  .course-card .field .val ul { margin: 0; padding-left: 18px; }
+  .course-card .field .val ul li { font-size: 13.5px; line-height: 1.65; margin-bottom: 3px; }
+  .course-card .field.judgement .key { color: var(--red); }
+  .course-card .field.judgement .val { color: var(--ink); font-weight: 500; }
+  .course-card .field.skip .key { color: var(--gold); }
+  .course-card .field.skip .val { color: var(--ink-mid); font-style: italic; }
+  .course-card .course-link {
+    background: var(--paper);
+    padding: 10px 22px;
+    border-top: 1px solid var(--line-soft);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.12em;
+  }
+  .course-card .course-link a {
+    color: var(--blue); text-decoration: none; border: none;
+  }
+  .course-card .course-link a:hover { color: var(--red); }
+
+  /* ─── 决策器表 ─── */
+  .decider {
+    border: 1px solid var(--ink); margin: 22px 0 36px; background: var(--paper-soft);
+  }
+  .decider .deci-head {
+    background: var(--ink); color: var(--paper);
+    padding: 12px 20px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .decider table { width: 100%; border-collapse: collapse; }
+  .decider th, .decider td {
+    border-bottom: 1px solid var(--line-soft); padding: 12px 16px;
+    text-align: left; font-size: 14px; line-height: 1.55; vertical-align: top;
+  }
+  .decider th {
+    background: var(--paper-deep); font-family: "Inter Tight", sans-serif;
+    font-weight: 700; color: var(--ink); border-bottom: 2px solid var(--ink);
+    font-size: 13px;
+  }
+  .decider td:first-child {
+    font-family: "Inter Tight", sans-serif; font-weight: 700; color: var(--ink);
+    background: var(--paper); width: 30%;
+  }
+  .decider td.rec { color: var(--red); font-weight: 600; }
+
+  /* ─── 全景速查表 ─── */
+  .matrix {
+    width: 100%; border-collapse: collapse; margin: 20px 0 36px;
+    font-size: 13px;
+  }
+  .matrix th, .matrix td {
+    border: 1px solid var(--line-soft); padding: 10px 12px;
+    text-align: left; vertical-align: top; line-height: 1.5;
+  }
+  .matrix th {
+    background: var(--paper-deep);
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    color: var(--ink); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink);
+    font-size: 12.5px;
+  }
+  .matrix td.cn { font-weight: 600; color: var(--ink); }
+  .matrix td.en {
+    font-family: "Inter Tight", sans-serif; color: var(--blue); font-size: 12px; font-style: italic;
+  }
+  .matrix td.dur { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--ink-mid); }
+  .matrix td.lvl { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .matrix td.lvl.f { color: var(--green); }
+  .matrix td.lvl.b { color: var(--red); }
+  .matrix td.lvl.a { color: var(--gold); }
+  .matrix tr:hover { background: rgba(168, 66, 59, 0.04); }
+
+  /* ─── Callout ─── */
+  .callout {
+    background: var(--paper-soft); border-left: 4px solid var(--blue);
+    padding: 16px 20px; margin: 18px 0 22px;
+    font-size: 14.5px; line-height: 1.7; color: var(--ink-soft);
+  }
+  .callout .tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.22em;
+    color: var(--blue); text-transform: uppercase; display: block; margin-bottom: 6px;
+  }
+  .callout.red { border-left-color: var(--red); }
+  .callout.red .tag { color: var(--red); }
+  .callout.gold { border-left-color: var(--gold); }
+  .callout.gold .tag { color: var(--gold); }
+  .callout.green { border-left-color: var(--green); }
+  .callout.green .tag { color: var(--green); }
+
+  /* ─── 尖锐共识 / Sharp Take ─── */
+  .sharp {
+    border-top: 2px solid var(--red); border-bottom: 2px solid var(--red);
+    padding: 18px 22px; margin: 24px 0;
+    background: rgba(168, 66, 59, 0.05);
+  }
+  .sharp .tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.26em;
+    color: var(--red); text-transform: uppercase; display: block; margin-bottom: 8px;
+  }
+  .sharp p {
+    font-family: "Inter Tight", "PingFang SC", sans-serif;
+    font-size: 17px; line-height: 1.55; color: var(--ink); font-weight: 600;
+    margin: 0;
+  }
+
+  /* ─── 对比表 ─── */
+  .compare-table { width: 100%; margin: 16px 0 24px; border-collapse: collapse; }
+  .compare-table th, .compare-table td {
+    border: 1px solid var(--line-soft); padding: 12px 14px;
+    text-align: left; font-size: 13.5px; line-height: 1.6; vertical-align: top;
+  }
+  .compare-table th {
+    background: var(--paper-deep);
+    font-family: "Inter Tight", "PingFang SC", sans-serif; font-weight: 700;
+    color: var(--ink); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink);
+  }
+  .compare-table td:first-child {
+    font-family: "Inter Tight", sans-serif; font-weight: 700; color: var(--ink); background: var(--paper-soft);
+  }
+  .compare-table .en-cell { font-family: "Inter Tight", sans-serif; color: var(--blue); font-style: italic; }
+
+  /* ─── 4D 框架卡 ─── */
+  .four-d {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+    margin: 20px 0 30px;
+  }
+  .d-card {
+    border: 1px solid var(--ink); background: var(--paper-soft);
+    padding: 20px 22px;
+  }
+  .d-card .letter {
+    font-family: "Inter Tight", sans-serif; font-weight: 900;
+    font-size: 56px; line-height: 1; color: var(--red);
+    letter-spacing: -0.04em; margin-bottom: 8px;
+  }
+  .d-card .en {
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    font-size: 18px; color: var(--blue); margin-bottom: 4px;
+    font-style: italic;
+  }
+  .d-card h4 {
+    font-family: "Inter Tight", "PingFang SC", sans-serif;
+    font-size: 18px; font-weight: 700; color: var(--ink);
+    margin: 0 0 8px;
+  }
+  .d-card .desc { font-size: 13.5px; line-height: 1.65; color: var(--ink-mid); }
+  .d-card .desc strong { color: var(--ink); }
+
+  /* ─── 路径卡 ─── */
+  .path-card {
+    border: 1px solid var(--ink); background: var(--paper-soft);
+    padding: 22px 24px; margin-bottom: 22px;
+  }
+  .path-card .role {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.22em;
+    color: var(--red); text-transform: uppercase; margin-bottom: 6px;
+  }
+  .path-card h3 {
+    font-family: "Inter Tight", "PingFang SC", sans-serif;
+    font-size: 22px; font-weight: 800; color: var(--ink);
+    margin: 0 0 6px; letter-spacing: -0.015em;
+  }
+  .path-card .summary {
+    font-size: 14px; line-height: 1.6; color: var(--ink-mid); margin-bottom: 14px;
+    font-style: italic;
+  }
+  .path-card ol {
+    list-style: none; counter-reset: pathstep; padding-left: 0;
+  }
+  .path-card ol li {
+    counter-increment: pathstep;
+    padding: 8px 0 8px 36px;
+    position: relative;
+    border-bottom: 1px dotted var(--line-soft);
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+  .path-card ol li:last-child { border-bottom: none; }
+  .path-card ol li::before {
+    content: counter(pathstep, decimal-leading-zero);
+    position: absolute; left: 0; top: 8px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px; font-weight: 700;
+    color: var(--red); letter-spacing: 0.08em;
+  }
+  .path-card ol li .why {
+    color: var(--ink-faint); font-size: 12.5px; display: block; margin-top: 2px;
+  }
+
+  /* ─── 术语网格 ─── */
+  .glossary {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px; margin-bottom: 50px;
+  }
+  .glossary .term { border-top: 2px solid var(--ink); padding: 12px 4px 0; }
+  .glossary .term .en {
+    font-family: "Inter Tight", sans-serif;
+    font-size: 14px; font-weight: 700; color: var(--blue); margin-bottom: 4px;
+  }
+  .glossary .term .cn { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+  .glossary .term .def { font-size: 12.5px; line-height: 1.55; color: var(--ink-mid); }
+
+  /* ─── 章末导航 ─── */
+  .chapter-nav {
+    margin-top: 60px; padding-top: 24px; border-top: 4px solid var(--ink);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+  }
+  .chapter-nav a {
+    text-decoration: none; color: var(--ink); border: none;
+    font-family: "Inter Tight", "PingFang SC", sans-serif;
+    font-weight: 700; font-size: 16px;
+    border-bottom: 2px solid var(--red); padding-bottom: 2px;
+  }
+  .chapter-nav a:hover { color: var(--red); background: transparent; }
+  .chapter-nav .meta {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.22em;
+    color: var(--ink-faint); text-transform: uppercase;
+    display: block; margin-bottom: 4px; border: none;
+  }
+  .chapter-nav .nav-item { display: flex; flex-direction: column; }
+  .chapter-nav .nav-item.right { text-align: right; }
+
+  /* ─── Footer ─── */
+  footer {
+    border-top: 4px solid var(--ink); padding-top: 18px; margin-top: 40px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px; letter-spacing: 0.16em; color: var(--ink-faint);
+    text-transform: uppercase;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  }
+
+  /* SPA section 控制 */
+  section[data-route] { display: none; }
+  section[data-route].active { display: block; }
+
+  /* 响应式 */
+  @media (max-width: 720px) {
+    .stats-strip { grid-template-columns: repeat(2, 1fr); }
+    .stats-strip .stat:nth-child(2) { border-right: none; }
+    .four-d { grid-template-columns: 1fr; }
+    .course-card .field { grid-template-columns: 70px 1fr; gap: 10px; }
+    .course-card .course-head { flex-direction: column; align-items: flex-start; }
+    .decider td:first-child { width: 38%; }
+    .matrix { font-size: 12px; }
+    .matrix th, .matrix td { padding: 8px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- HOME 首页 -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section data-route="home">
+  <div class="page">
+
+    <div class="masthead">
+      <div class="lhs">VOL.01 · 中文导览本</div>
+      <div class="center">The Academy Field Notes</div>
+      <div class="rhs">2026 · 05 · 27</div>
+    </div>
+
+    <div class="hero">
+      <div class="kicker">A Reading Guide to Anthropic Skilljar · 18 Free Courses</div>
+      <h1>18 门课、22 小时视频,<em>不上课</em>也能拿到核心。</h1>
+      <p class="deck">
+        Anthropic 在 2026 年 3 月开了官方学习平台 <a href="https://anthropic.skilljar.com/" target="_blank">Skilljar Academy</a>,18 门课全免费、带官方证书。问题是——总时长 22+ 小时,横跨 5 个轨道,不是每门都值得花时间。这份导览把每门课压缩成 30 秒精华卡:<strong>讲什么 / 给谁 / 章节 / 我的判断 / 跳过条件</strong>。再把贯穿所有课的 6 个核心概念抽出来用中文重讲一遍。看完这份 ≈ 拿到了 18 门课最硬的部分。
+      </p>
+      <div class="byline">中文导读 · 白笑 · 课程源 <a href="https://anthropic.skilljar.com/" target="_blank" style="color:var(--blue); border-bottom:1px dotted var(--blue); text-decoration:none;">anthropic.skilljar.com →</a></div>
+    </div>
+
+    <div class="stats-strip">
+      <div class="stat">
+        <div class="label">TOTAL COURSES</div>
+        <div class="value">18<span class="unit">门</span></div>
+        <div class="sub">2026-03 开张以来累计上线,全免费,全有官方证书</div>
+      </div>
+      <div class="stat">
+        <div class="label">TOTAL HOURS</div>
+        <div class="value">22<span class="unit">+ 小时</span></div>
+        <div class="sub">最长 <span class="mono">Building with Claude API</span> 一门就 8.1 小时</div>
+      </div>
+      <div class="stat">
+        <div class="label">TRACKS</div>
+        <div class="value">5<span class="unit">条轨道</span></div>
+        <div class="sub">入门 / AI 素养 / 开发者 / API & MCP / 云部署</div>
+      </div>
+      <div class="stat">
+        <div class="label">READING TIME</div>
+        <div class="value">60–90<span class="unit">分钟</span></div>
+        <div class="sub">这份导览本读完的预计时间,替代 22h 视频</div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div class="kicker">导言 · WHY THIS GUIDE</div>
+      <h2>这份导览解决三个问题</h2>
+      <div class="dek">官网只给标题、Skilljar 只放视频,你得自己看完才知道该不该看。这本笔记替你看完了。</div>
+    </div>
+
+    <p class="lead">
+      第一个问题是<strong>「看不清地图」</strong>——18 门课平铺,看不出哪条是主干、哪条是支线。这本把它分成 5 大轨道,每条轨道你 30 秒判断要不要进。
+    </p>
+    <p class="lead">
+      第二个问题是<strong>「没有判断」</strong>——博客只堆事实,没人敢说哪门课跳过。这本对每门课给「我的判断」和「跳过条件」,该跳就跳。
+    </p>
+    <p class="lead">
+      第三个问题是<strong>「知识散在课里」</strong>——4D 框架、Agentic Loop、Skills vs Subagents、MCP 三原语这些核心概念在多门课反复出现。这本把它们抽出来在 <a href="#core">「精华提炼」</a> 一章用中文重讲。
+    </p>
+
+    <div class="section-header">
+      <div class="kicker">导航 · NAVIGATE</div>
+      <h2>按轨道进入</h2>
+      <div class="dek">每张卡片新开标签页,刷新不丢位置。从你最相关的轨道开始。</div>
+    </div>
+
+    <div class="chapters">
+      <a href="#t1" target="_blank" class="chapter-card">
+        <div class="num">轨道 1 · FOUNDATION</div>
+        <h3>入门基础</h3>
+        <div class="desc">Claude 是什么、LLM 怎么工作、能干嘛干不了嘛。完全不用前置知识的两门入门课,30 分钟 + 45 分钟。</div>
+        <div class="meta">2 门课 · 1.5h · 入门 <span class="arrow">→</span></div>
+      </a>
+      <a href="#t2" target="_blank" class="chapter-card">
+        <div class="num">轨道 2 · AI FLUENCY</div>
+        <h3>AI 素养 · 4D 框架</h3>
+        <div class="desc">学术派课程,4D 框架是核心(Delegation / Description / Discernment / Diligence)。给 5 类人群各做了一版。</div>
+        <div class="meta">6 门课 · 3–4h · 非技术 <span class="arrow">→</span></div>
+      </a>
+      <a href="#t3" target="_blank" class="chapter-card">
+        <div class="num">轨道 3 · BUILD</div>
+        <h3>开发者深度</h3>
+        <div class="desc">Claude Code、Agent Skills、Subagents、Cowork。从「第一次用 AI 编码」到「搭出自己的 Skills 生态」。</div>
+        <div class="meta">5 门课 · 4h · 开发者必看 <span class="arrow">→</span></div>
+      </a>
+      <a href="#t4" target="_blank" class="chapter-card">
+        <div class="num">轨道 4 · API & MCP</div>
+        <h3>API 与协议</h3>
+        <div class="desc">Building with Claude API 是巨无霸(8.1h、84 课时、10 测验)。加上 MCP 入门和进阶,3 门课构成完整 API 闭环。</div>
+        <div class="meta">3 门课 · 10h · 工程师 <span class="arrow">→</span></div>
+      </a>
+      <a href="#t5" target="_blank" class="chapter-card">
+        <div class="num">轨道 5 · CLOUD</div>
+        <h3>云平台部署</h3>
+        <div class="desc">AWS Bedrock 和 GCP Vertex AI 两个版本。结构跟 API 课高度重叠,只在云接入和企业合规上有差异。</div>
+        <div class="meta">2 门课 · 6h · 企业架构师 <span class="arrow">→</span></div>
+      </a>
+      <a href="#core" target="_blank" class="chapter-card" style="border-color: var(--red); background: rgba(168,66,59,0.04);">
+        <div class="num" style="color: var(--red);">★ 精华提炼</div>
+        <h3>核心知识 6 章</h3>
+        <div class="desc">把贯穿 18 门课的 6 个底层概念抽出来重讲:4D 框架、Agentic Loop、Explore→Plan→Code→Commit、Skills/Subagents/Hooks/MCP 区别、Prompt Caching、Agent 四模式。</div>
+        <div class="meta">看完 ≈ 拿到 18 门课硬知识 <span class="arrow">→</span></div>
+      </a>
+      <a href="#paths" target="_blank" class="chapter-card">
+        <div class="num">学习路径</div>
+        <h3>按角色选路径</h3>
+        <div class="desc">5 种角色的最优路径:开发者 / 产品经理 / 教育者 / 业务人员 / 决策者。每种带「总时长」和「跳过哪几门」。</div>
+        <div class="meta">5 条路径 · 直接选 <span class="arrow">→</span></div>
+      </a>
+      <a href="#glossary" target="_blank" class="chapter-card">
+        <div class="num">附录</div>
+        <h3>术语速查 · 25 条</h3>
+        <div class="desc">Agentic Loop / Skill / SKILL.md / Subagent / Hook / MCP / Sampling / Roots / Streamable HTTP / Prompt Caching ...</div>
+        <div class="meta">高频术语中英对照 <span class="arrow">→</span></div>
+      </a>
+    </div>
+
+    <div class="section-header">
+      <div class="kicker">决策器 · WHICH COURSE FOR ME</div>
+      <h2>我该学哪门?三分钟搞定</h2>
+      <div class="dek">按你的角色和目的对号入座。每行给出推荐课、总时长、为什么。</div>
+    </div>
+
+    <div class="decider">
+      <div class="deci-head">如果你是...</div>
+      <table>
+        <thead>
+          <tr><th>角色 / 目的</th><th>推荐课 · 推荐顺序</th><th>总时长</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>第一次用 Claude,完全小白</td>
+            <td class="rec">Claude 101 → AI Capabilities and Limitations</td>
+            <td>~1.5h</td>
+          </tr>
+          <tr>
+            <td>开发者,从没用过 AI 编码代理</td>
+            <td class="rec">Claude Code 101 → Claude Code in Action → Introduction to Agent Skills</td>
+            <td>~2.5h</td>
+          </tr>
+          <tr>
+            <td>开发者,已经在用 Cursor / Copilot</td>
+            <td class="rec">Claude Code in Action → Introduction to Subagents → Introduction to Agent Skills</td>
+            <td>~2h</td>
+          </tr>
+          <tr>
+            <td>想用 API 搭产品,Python 后端</td>
+            <td class="rec">Building with the Claude API(主菜 8.1h)→ Introduction to MCP</td>
+            <td>~10h</td>
+          </tr>
+          <tr>
+            <td>想搭 MCP 服务器对接 Claude</td>
+            <td class="rec">Introduction to MCP → MCP: Advanced Topics → 回头补 Building with Claude API 的 MCP 章节</td>
+            <td>~3h</td>
+          </tr>
+          <tr>
+            <td>产品 / 运营 / 非技术,想日常用 Claude</td>
+            <td class="rec">Claude 101 → Introduction to Claude Cowork → AI Fluency Framework & Foundations</td>
+            <td>~2.5h</td>
+          </tr>
+          <tr>
+            <td>大学老师 / 教学设计师</td>
+            <td class="rec">AI Fluency Framework & Foundations → AI Fluency for Educators → Teaching AI Fluency</td>
+            <td>~2.5h</td>
+          </tr>
+          <tr>
+            <td>大学生</td>
+            <td class="rec">AI Fluency Framework & Foundations → AI Fluency for Students</td>
+            <td>~1.5h</td>
+          </tr>
+          <tr>
+            <td>NGO / 非营利组织</td>
+            <td class="rec">AI Fluency Framework & Foundations → AI Fluency for Nonprofits</td>
+            <td>~1.5h</td>
+          </tr>
+          <tr>
+            <td>小企业老板</td>
+            <td class="rec">Claude 101 → AI Fluency for Small Businesses</td>
+            <td>~1.5h</td>
+          </tr>
+          <tr>
+            <td>企业架构师 · AWS 栈</td>
+            <td class="rec">Building with the Claude API → Claude with Amazon Bedrock(覆盖度高,可只补云接入章节)</td>
+            <td>~10h</td>
+          </tr>
+          <tr>
+            <td>企业架构师 · GCP 栈</td>
+            <td class="rec">Building with the Claude API → Claude with Google Cloud Vertex AI</td>
+            <td>~10h</td>
+          </tr>
+          <tr>
+            <td>商业决策者,不写代码但要拍板</td>
+            <td class="rec">AI Capabilities and Limitations → Claude 101(快速过) → 这本笔记的「精华提炼」章</td>
+            <td>~1h</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-header">
+      <div class="kicker">全景速查 · ALL 18 COURSES</div>
+      <h2>18 门课一表全</h2>
+      <div class="dek">按轨道分组排列。标 ★ 为强烈推荐(全员有用),标 ⚠ 为有重叠(选其一即可)。</div>
+    </div>
+
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>课程名</th>
+          <th>英文原名</th>
+          <th>轨道</th>
+          <th>级别</th>
+          <th>时长</th>
+          <th>定位</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01</td>
+          <td class="cn">Claude 101 ★</td>
+          <td class="en">Claude 101</td>
+          <td>入门</td>
+          <td class="lvl f">F</td>
+          <td class="dur">~45m</td>
+          <td>所有人的第一门</td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td class="cn">AI 能力与局限</td>
+          <td class="en">AI Capabilities and Limitations</td>
+          <td>入门</td>
+          <td class="lvl f">F</td>
+          <td class="dur">~45m</td>
+          <td>LLM 心智模型</td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td class="cn">AI 素养 · 4D 框架 ★</td>
+          <td class="en">AI Fluency: Framework & Foundations</td>
+          <td>素养</td>
+          <td class="lvl f">F</td>
+          <td class="dur">~1.1h</td>
+          <td>方法论本体</td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td class="cn">AI 素养 · 教育者版</td>
+          <td class="en">AI Fluency for Educators</td>
+          <td>素养</td>
+          <td class="lvl f">F</td>
+          <td class="dur">~24m</td>
+          <td>教师专版</td>
+        </tr>
+        <tr>
+          <td>05</td>
+          <td class="cn">AI 素养 · 学生版</td>
+          <td class="en">AI Fluency for Students</td>
+          <td>素养</td>
+          <td class="lvl f">F</td>
+          <td class="dur">~30m</td>
+          <td>大学生专版</td>
+        </tr>
+        <tr>
+          <td>06</td>
+          <td class="cn">AI 素养 · 非营利组织版</td>
+          <td class="en">AI Fluency for Nonprofits</td>
+          <td>素养</td>
+          <td class="lvl f">F</td>
+          <td class="dur">~30m</td>
+          <td>NGO 专版</td>
+        </tr>
+        <tr>
+          <td>07</td>
+          <td class="cn">AI 素养 · 小企业版</td>
+          <td class="en">AI Fluency for Small Businesses</td>
+          <td>素养</td>
+          <td class="lvl f">F</td>
+          <td class="dur">~40m</td>
+          <td>小企业专版</td>
+        </tr>
+        <tr>
+          <td>08</td>
+          <td class="cn">教 AI 素养</td>
+          <td class="en">Teaching AI Fluency</td>
+          <td>素养</td>
+          <td class="lvl b">B</td>
+          <td class="dur">~30m</td>
+          <td>教别人 4D</td>
+        </tr>
+        <tr>
+          <td>09</td>
+          <td class="cn">Claude Code 101 ★</td>
+          <td class="en">Claude Code 101</td>
+          <td>开发者</td>
+          <td class="lvl f">F</td>
+          <td class="dur">~1h</td>
+          <td>第一次用 AI 编码代理</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td class="cn">Claude Code 实战 ★</td>
+          <td class="en">Claude Code in Action</td>
+          <td>开发者</td>
+          <td class="lvl b">B</td>
+          <td class="dur">~1h</td>
+          <td>Hooks / SDK / MCP / GitHub</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td class="cn">Agent Skills 入门 ★</td>
+          <td class="en">Introduction to Agent Skills</td>
+          <td>开发者</td>
+          <td class="lvl b">B</td>
+          <td class="dur">~30m</td>
+          <td>教 Claude 一次,用一辈子</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td class="cn">子代理入门</td>
+          <td class="en">Introduction to Subagents</td>
+          <td>开发者</td>
+          <td class="lvl b">B</td>
+          <td class="dur">~30m</td>
+          <td>把任务拆给隔离的小代理</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td class="cn">Claude Cowork 入门</td>
+          <td class="en">Introduction to Claude Cowork</td>
+          <td>开发者</td>
+          <td class="lvl f">F</td>
+          <td class="dur">~45m</td>
+          <td>非技术人也能用的桌面协作</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td class="cn">Claude API 开发 ★</td>
+          <td class="en">Building with the Claude API</td>
+          <td>API</td>
+          <td class="lvl b">B</td>
+          <td class="dur">~8.1h</td>
+          <td>巨无霸,84 课时 10 测验</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td class="cn">MCP 入门</td>
+          <td class="en">Introduction to Model Context Protocol</td>
+          <td>API</td>
+          <td class="lvl b">B</td>
+          <td class="dur">~1.5h</td>
+          <td>三原语 Tool/Resource/Prompt</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td class="cn">MCP 进阶</td>
+          <td class="en">Model Context Protocol: Advanced Topics</td>
+          <td>API</td>
+          <td class="lvl a">A</td>
+          <td class="dur">~1.5h</td>
+          <td>Sampling/Roots/StreamableHTTP</td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td class="cn">AWS Bedrock 上的 Claude ⚠</td>
+          <td class="en">Claude with Amazon Bedrock</td>
+          <td>云</td>
+          <td class="lvl b">B</td>
+          <td class="dur">~8h</td>
+          <td>跟 API 课 80% 重叠</td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td class="cn">GCP Vertex AI 上的 Claude ⚠</td>
+          <td class="en">Claude with Google Cloud Vertex AI</td>
+          <td>云</td>
+          <td class="lvl b">B</td>
+          <td class="dur">~8h</td>
+          <td>跟 API 课 80% 重叠</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout gold">
+      <span class="tag">★ 重叠预警</span>
+      <strong>Building with the Claude API、Claude with Amazon Bedrock、Claude with Google Cloud Vertex AI 三门课结构高度重叠</strong>——都是 8 小时左右、都包含完整的 prompt evaluation / prompt engineering / tool use / RAG / Claude features / MCP / Agents 模块。差异只在<strong>云接入层</strong>(API key vs IAM vs ADC)。<strong>选其一即可,不要三门都刷。</strong>
+    </div>
+
+    <div class="sharp">
+      <span class="tag">尖锐共识 · SHARP TAKE</span>
+      <p>18 门课里真正不可替代的只有 4 门:Claude 101(地图)、AI Capabilities and Limitations(底层心智模型)、Building with Claude API(工程闭环)、Introduction to Agent Skills(把可复用工作流封装出来的方法论)。其余 14 门要么是这 4 门的具体应用(Bedrock/Vertex 是云栈版的 API 课;6 门 Fluency 是 4D 框架的人群细分版),要么是开发者主线上的细节增强(Code 101/in Action/Subagents)。<strong>这 4 门加起来约 11 小时,看完就拿到 80% 价值。</strong></p>
+    </div>
+
+    <footer>
+      <span>The Academy Field Notes · v0.1</span>
+      <span>2026 · 05 · 27 · 白笑</span>
+    </footer>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 轨道 1 · 入门基础 -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section data-route="t1">
+  <div class="page-narrow">
+
+    <div class="topbar">
+      <a href="#home">← 首页</a>
+      <div class="center">The Academy Field Notes</div>
+      <a href="#t2">轨道 2 →</a>
+    </div>
+
+    <div class="chapter-head">
+      <div class="kicker">轨道 1 · FOUNDATION · 2 门课 · 约 1.5h</div>
+      <h1>入门基础 — <em>地图</em>和<em>心智模型</em></h1>
+      <p class="dek">两门课构成 Anthropic Academy 的「地图」:一门告诉你 Claude 桌面端能干嘛(产品全景),一门告诉你 LLM 底层怎么思考(避免被幻觉骗)。任何角色都该先过这两门,各 45 分钟。</p>
+    </div>
+
+    <h2><span class="pre">01 · Foundation</span>Claude 101 — 第一次用 Claude 就上手</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 01</div>
+          <h3>Claude 101</h3>
+          <span class="en-title">Claude 101 — Daily-work tasks, core features, advanced resources</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-foundation">FOUNDATION</span>
+          <span class="badge time">~45 min</span>
+          <span class="badge">5 模块 / 13 课</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val">把 Claude 产品全家桶过一遍:Chat、Cowork、Code、Projects、Artifacts、Skills、Connectors、Enterprise Search、Research Mode。重点不是教你写 prompt,是告诉你「桌面端这堆按钮分别是干啥的」。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">所有没用过 Claude 桌面端的人。产品经理、运营、市场、销售、HR、写作者、第一次接触 Claude 的开发者都适合。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>Meet Claude — 第一次对话 / 怎么拿到更好的结果 / 桌面端三件套(Chat/Cowork/Code)</li>
+          <li>Organizing — Projects 项目 / Artifacts 工件 / Skills 能力包</li>
+          <li>Expanding — Connectors 工具连接 / Enterprise Search 企业搜索 / Research Mode 深度调研</li>
+          <li>Putting it together — 按角色看用例 / 其他工作方式</li>
+          <li>Conclusion + 完成证书</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val">值得花 45 分钟。<strong>这是唯一让你看清 Claude 全景的官方课</strong>——其他课都是聚焦在某个具体能力(Code/Cowork/Skills),只有这门告诉你「这些能力如何组成一个产品矩阵」。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">你已经在日常用 Claude 桌面端、知道 Projects/Artifacts/Connectors 各自的位置,就可以跳过。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/claude-101" target="_blank">anthropic.skilljar.com/claude-101</a></div>
+    </div>
+
+    <h2><span class="pre">02 · Foundation</span>AI 能力与局限 — 知道 LLM 在想什么,才不会被骗</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 02</div>
+          <h3>AI 能力与局限</h3>
+          <span class="en-title">AI Capabilities and Limitations — Mental model of how generative AI works</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-foundation">FOUNDATION</span>
+          <span class="badge time">~45 min</span>
+          <span class="badge">7 模块</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val">给你一套 LLM 心智模型,围绕 4 个性质展开:<strong>下一词元预测(Next Token Prediction)、知识(Knowledge)、工作记忆(Working Memory)、可操控性(Steerability)</strong>。每个性质都配「Try it out」实操。最后一章 When Properties Collide 教你看穿幻觉、低估、过度自信的根源。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">所有人,尤其是「会用 Claude 但被它骗过」「想知道为什么有时它一本正经胡说八道」的人。商业决策者、合规、法务、记者特别合适。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>Getting Started — 课程介绍</li>
+          <li>What We Mean by AI / How AI Gets Its Character — 定义与性格形成</li>
+          <li>Next Token Prediction — 核心机制 + 实操</li>
+          <li>Knowledge — 它「知道什么」+ 实操</li>
+          <li>Working Memory — 上下文窗口 + 实操</li>
+          <li>Steerability — 怎么把它「拽」到你要的方向 + 实操</li>
+          <li>Putting It All Together — When Properties Collide / Next Steps / Quiz</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val">2026 年 Anthropic 新出的<strong>中立独立课</strong>(不绑特定产品),少有的从底层原理讲起的课。45 分钟拿到「不被 LLM 骗」的免疫力,ROI 极高。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">你已经读过 Karpathy 的 LLM 介绍、或写过 Transformer 推理代码,就可以跳过——这门课是给「会用但不懂内部」的人补底层。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/ai-capabilities-and-limitations" target="_blank">anthropic.skilljar.com/ai-capabilities-and-limitations</a></div>
+    </div>
+
+    <div class="sharp">
+      <span class="tag">尖锐共识 · SHARP TAKE</span>
+      <p>这两门入门课<strong>互补不重复</strong>:Claude 101 教「Claude 能干嘛」,AI Capabilities and Limitations 教「LLM 在想什么」。前者是产品功能图,后者是大脑解剖图。两门都过完,后续任何课你都能更快理解——因为底层心智模型已经搭好了。<strong>1.5 小时投入,后续每门课至少节省 30% 时间</strong>,这是 Academy 里 ROI 最高的组合。</p>
+    </div>
+
+    <div class="chapter-nav">
+      <div class="nav-item"><span class="meta">← 上一章</span><a href="#home">首页</a></div>
+      <div class="nav-item right"><span class="meta">下一章 →</span><a href="#t2">轨道 2 · AI 素养</a></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 轨道 2 · AI 素养 -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section data-route="t2">
+  <div class="page-narrow">
+
+    <div class="topbar">
+      <a href="#t1">← 轨道 1</a>
+      <div class="center">The Academy Field Notes</div>
+      <a href="#t3">轨道 3 →</a>
+    </div>
+
+    <div class="chapter-head">
+      <div class="kicker">轨道 2 · AI FLUENCY · 6 门课 · 约 3–4h</div>
+      <h1>AI 素养 — <em>4D 框架</em>是底层,其他 5 门是人群细分</h1>
+      <p class="dek">由 Anthropic 与学术合作伙伴 Prof. Joseph Feller、Prof. Rick Dakan 共同开发,核心是 4D 框架(Delegation / Description / Discernment / Diligence)。一门主课讲框架本身,其余 5 门是给特定人群(教师、学生、NGO、小企业、培训师)的应用版。</p>
+    </div>
+
+    <div class="callout green">
+      <span class="tag">★ 看这个轨道之前先看这里</span>
+      4D 框架是其他 5 门的基础——直接跳过去看人群版会迷失。<strong>建议顺序:</strong>先看 03(Framework & Foundations),再选一个跟你身份对应的人群版。把 6 门全刷一遍是浪费时间,内容重叠度 60%+。
+    </div>
+
+    <h2><span class="pre">03 · Foundation · 主课</span>AI Fluency: Framework & Foundations — 跟 AI 打交道的 4D 方法论</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 03 · ★ 主课</div>
+          <h3>AI 素养 · 4D 框架</h3>
+          <span class="en-title">AI Fluency: Framework & Foundations</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-foundation">FOUNDATION</span>
+          <span class="badge time">~1.1h</span>
+          <span class="badge">8 模块</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val">提出 <strong>4D 框架</strong>:<strong>Delegation(委派)/ Description(描述)/ Discernment(辨别)/ Diligence(勤勉)</strong>。每个 D 一节课,核心是两个循环——「Description-Discernment 循环」(描述→评估反复迭代)和「Delegation-Diligence 循环」(委派→负责任地监督)。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">所有人。这门课不教 prompt 技巧,教的是「人和 AI 怎么分工」的元方法论。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>Introduction to AI Fluency</li>
+          <li>The AI Fluency Framework — 4D 模型概览</li>
+          <li>Deep Dive 1: Generative AI Fundamentals</li>
+          <li>Delegation — 怎么把任务交给 AI</li>
+          <li>Description — 怎么把想要的东西讲清楚</li>
+          <li>Discernment — 怎么评估 AI 的输出</li>
+          <li>Diligence — 怎么对结果负责</li>
+          <li>Conclusion & Certificate</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val">学术派课程,稍嫌啰嗦,但 <strong>4D 框架确实是个有用的语言工具</strong>——之后你和团队讨论「怎么用 AI」时,有一套共同词汇。如果你只刷一门 AI Fluency,选这门。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">你已经能流畅区分「prompt 设计 / 输出校验 / 信任校准 / 责任归属」四个维度,就可以跳过——这门课其实就是把这四个东西命名为 4D。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/ai-fluency-framework-foundations" target="_blank">anthropic.skilljar.com/ai-fluency-framework-foundations</a></div>
+    </div>
+
+    <h2><span class="pre">04 · 人群版</span>AI Fluency for Educators — 给大学老师的 4D 应用版</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 04</div>
+          <h3>AI 素养 · 教育者版</h3>
+          <span class="en-title">AI Fluency for Educators</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-foundation">FOUNDATION</span>
+          <span class="badge time">~24 min</span>
+          <span class="badge">需先看 03</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val">把 4D 框架套到教学场景:课程设计 / 学习目标 / 学习材料 / 作业设计。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">大学教师、教学设计师、学术领导者。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>Introduction and AI Fluency Framework Review</li>
+          <li>Applying AI Fluency to Course Design and Learning Outcomes</li>
+          <li>Applying AI Fluency to Learning Materials and Assignments</li>
+          <li>Certificate of Completion</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val">24 分钟,短小精悍,实操性强。如果你要给学生设计「合理使用 AI」的作业政策,这门课能直接给你一套结构。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">你不在教育系统工作。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/ai-fluency-for-educators" target="_blank">anthropic.skilljar.com/ai-fluency-for-educators</a></div>
+    </div>
+
+    <h2><span class="pre">05 · 人群版</span>AI Fluency for Students — 给大学生的 4D 应用版</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 05</div>
+          <h3>AI 素养 · 学生版</h3>
+          <span class="en-title">AI Fluency for Students</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-foundation">FOUNDATION</span>
+          <span class="badge time">~30 min</span>
+          <span class="badge">需先看 03</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val">学生场景:把 AI 当学习伙伴、用 AI 做职业规划、什么时候保持「人在回路」(Human in the Loop)。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">大学生、研究生、自学者。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>Welcome + AI Fluency Framework Review</li>
+          <li>AI as a Learning Partner — 当学习搭子</li>
+          <li>AI in Career Planning — 职业规划</li>
+          <li>Being the Human in the Loop — 该插手时插手</li>
+          <li>Certificate</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val">如果你是学生,值得花 30 分钟。<strong>「AI 当学习伙伴」一节</strong>把「让 AI 直接给答案」和「让 AI 教你怎么想」分清楚了,这个区分很关键。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">你已经毕业。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/ai-fluency-for-students" target="_blank">anthropic.skilljar.com/ai-fluency-for-students</a></div>
+    </div>
+
+    <h2><span class="pre">06 · 人群版</span>AI Fluency for Nonprofits — 给 NGO 的 4D 应用版</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 06</div>
+          <h3>AI 素养 · 非营利组织版</h3>
+          <span class="en-title">AI Fluency for Nonprofits</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-foundation">FOUNDATION</span>
+          <span class="badge time">~30 min</span>
+          <span class="badge">GivingTuesday 合作</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val">由 Anthropic + GivingTuesday 联合开发,聚焦资源受限场景下的 AI 应用:筹款、传播、项目交付、运营、领导层应用。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">NGO 员工、社会企业、公益组织。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>Welcome + The 4D Framework</li>
+          <li>The Description-Discernment Loop — Researching with AI / Writing with AI</li>
+          <li>The Delegation-Diligence Loop — Understanding Privacy and Data / Data Analysis with AI</li>
+          <li>Putting It All Together — Workflow Augmentation / Integration</li>
+          <li>Next Steps + Course Quiz</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val">「隐私和数据」一节对 NGO 特别重要——很多公益组织不知道哪些数据不能扔给 AI。如果你在 NGO 工作,优先级高于其他人群版。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">你不在 NGO / 公益领域。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/ai-fluency-for-nonprofits" target="_blank">anthropic.skilljar.com/ai-fluency-for-nonprofits</a></div>
+    </div>
+
+    <h2><span class="pre">07 · 人群版</span>AI Fluency for Small Businesses — 给小企业的 4D 应用版</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 07</div>
+          <h3>AI 素养 · 小企业版</h3>
+          <span class="en-title">AI Fluency for Small Businesses</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-foundation">FOUNDATION</span>
+          <span class="badge time">~40 min</span>
+          <span class="badge">最完整的人群版</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val">小企业场景。比其他人群版多了两个独立模块:「How AI Works」(AI 怎么工作)和「AI Capabilities and Limitations」(能力局限)——相当于把课程 02 的核心内容嵌进来了。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">小企业主、个体经营者、5–50 人创业公司。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>Introduction + The 4D Framework</li>
+          <li>How AI Works + AI Capabilities and Limitations</li>
+          <li>Explore! — 实操</li>
+          <li>The Description-Discernment Loop + Refining with AI</li>
+          <li>The Delegation-Diligence Loop + Transparent AI Use</li>
+          <li>Putting It All Together + Tying It All Together + Human in the Loop</li>
+          <li>Closure + Course Quiz</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val">人群版里最丰满的一版。如果你只是「想给团队推一门 AI 入门课」<strong>但不想推太学术的 03 主课</strong>,这门更接地气。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">你已经学过 03 主课 + 02 能力与局限,这门内容已被覆盖。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/ai-fluency-for-small-businesses" target="_blank">anthropic.skilljar.com/ai-fluency-for-small-businesses</a></div>
+    </div>
+
+    <h2><span class="pre">08 · 师资版</span>Teaching AI Fluency — 教别人 4D 框架</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 08</div>
+          <h3>教 AI 素养</h3>
+          <span class="en-title">Teaching AI Fluency — For instructors and trainers</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-build">BUILD</span>
+          <span class="badge time">~30 min</span>
+          <span class="badge">面向培训师</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val">不是教 4D 框架本身,是教<strong>怎么把 4D 框架教给别人</strong>。包括两个循环的教学法、评估方式、作业设计、跟自己学科结合。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">大学教师、企业培训师、L&D 负责人、想做 AI 培训师的人。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>Welcome & Approaches to Teaching AI Fluency</li>
+          <li>The Delegation-Diligence Loop — 教学法</li>
+          <li>The Description-Discernment Loop — 教学法</li>
+          <li>How Do We Assess the 4Ds? — 评估方式</li>
+          <li>Designing Assignments for AI Fluency — 作业设计</li>
+          <li>AI's Impact and Your Discipline — 学科融合</li>
+          <li>Applying Discipline Expertise to AI Fluency</li>
+          <li>Certificate of Completion</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val">非常垂直的课,只对要做培训师的人有用。但「How Do We Assess the 4Ds」一节<strong>对企业 L&D 设计 AI 培训考核很实用</strong>——4D 各自怎么打分有具体规则。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">你不打算教别人用 AI。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/teaching-ai-fluency" target="_blank">anthropic.skilljar.com/teaching-ai-fluency</a></div>
+    </div>
+
+    <div class="sharp">
+      <span class="tag">尖锐共识 · SHARP TAKE</span>
+      <p>AI Fluency 系列的问题是<strong>「太学术、太框架化」</strong>。4D 框架本身没错,但每个人群版都把同样的方法论套一遍场景,信息密度不高。<strong>实用的做法:只看 03 主课</strong>(1.1h)拿到 4D 词汇,然后挑一个跟你身份最贴的人群版(20–40 分钟)做应用。其他人群版可以彻底跳过。如果你是培训师,加一门 08。一共最多 2.5 小时。把 6 门刷完的人,大概率是为了刷证书。</p>
+    </div>
+
+    <div class="chapter-nav">
+      <div class="nav-item"><span class="meta">← 上一章</span><a href="#t1">轨道 1 · 入门</a></div>
+      <div class="nav-item right"><span class="meta">下一章 →</span><a href="#t3">轨道 3 · 开发者</a></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 轨道 3 · 开发者深度 -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section data-route="t3">
+  <div class="page-narrow">
+
+    <div class="topbar">
+      <a href="#t2">← 轨道 2</a>
+      <div class="center">The Academy Field Notes</div>
+      <a href="#t4">轨道 4 →</a>
+    </div>
+
+    <div class="chapter-head">
+      <div class="kicker">轨道 3 · BUILD · 5 门课 · 约 4h</div>
+      <h1>开发者深度 — <em>Claude Code</em> 全家桶 + <em>Cowork</em></h1>
+      <p class="dek">这条轨道是 Anthropic Academy 的<strong>开发者主线</strong>——从「第一次用 AI 编码代理」到「搭出自己的 Skills 生态」。Claude Code 三件套(101 / in Action / Subagents)+ Agent Skills 是核心,加上面向非技术角色的 Cowork 入门。</p>
+    </div>
+
+    <h2><span class="pre">09 · Build</span>Claude Code 101 — 第一次用 AI 编码代理就上手</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 09 · ★</div>
+          <h3>Claude Code 101</h3>
+          <span class="en-title">Claude Code 101 — Agent loop, Plan Mode, Approval Modes</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-foundation">FOUNDATION</span>
+          <span class="badge time">~1h</span>
+          <span class="badge">7 部分 / 12 模块</span>
+          <span class="badge new">NEW</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val">区分「聊天助手」和「编码代理」(Agent vs Chat)。教 <strong>Agent Loop</strong>(Gather Context → Take Action → Verify Work)和 <strong>Explore → Plan → Code → Commit</strong> 工作流。涵盖 Approval Modes、Auto-Accept、Plan Mode 三种交互模式。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">从没用过 AI 编码代理的开发者(从 Cursor/Copilot 转过来也算)。需要 Claude Pro/Max/Enterprise 或 API key 才能跟实操。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>What is Claude Code? — 工作原理</li>
+          <li>Installation — 终端 / VS Code / JetBrains / Desktop / Web</li>
+          <li>Your First Prompt</li>
+          <li>The Explore → Plan → Code → Commit Workflow</li>
+          <li>Context Management — 怎么管上下文</li>
+          <li>Code Review — 让它审自己的代码</li>
+          <li>CLAUDE.md、Subagents、Skills、MCP、Hooks — 自定义入门</li>
+          <li>Course Quiz</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val">2026 年 4 月新出的入门课。<strong>Explore → Plan → Code → Commit 是 Claude Code 哲学的核心</strong>,这门课讲得最清楚。如果你用 AI 编码总觉得「失控」「跑偏」,这门 1 小时能修正认知。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">你已经熟悉 Plan Mode 和 Auto-Accept,在用 CLAUDE.md 写项目规则,知道 Agent Loop 三阶段——可以直接跳到 Code in Action。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/claude-code-101" target="_blank">anthropic.skilljar.com/claude-code-101</a></div>
+    </div>
+
+    <h2><span class="pre">10 · Build</span>Claude Code in Action — Hooks / SDK / MCP / GitHub 全套</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 10 · ★</div>
+          <h3>Claude Code 实战</h3>
+          <span class="en-title">Claude Code in Action — Hooks, SDK, MCP, GitHub integration</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-build">BUILD</span>
+          <span class="badge time">~1h</span>
+          <span class="badge">5 模块</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val">101 的进阶版。重点在 <strong>Hooks</strong>(自动化触发器)、<strong>SDK</strong>(把 Claude Code 嵌进自己的工具)、<strong>MCP Servers</strong> 集成、<strong>GitHub</strong> 工作流。包含 Custom Commands(自定义斜杠命令)。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">已经会用 Claude Code 基础,要把它「装进自己的工程流」的人。Hooks 部分对要做 CI/CD 集成、自动化代码审查、PR 自动化的人特别有价值。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>Claude Code 基础 — What is a coding assistant / in action</li>
+          <li>Hands-on — Setup / Project setup / Adding context / Making changes</li>
+          <li>Advanced — Controlling context / Custom commands / MCP servers / GitHub integration</li>
+          <li>Hooks — Introducing / Defining / Implementing / Gotchas / Useful examples</li>
+          <li>The Claude Code SDK</li>
+          <li>Quiz + Summary</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val">Claude Code 的核心进阶课。<strong>「Gotchas around Hooks」一节救命级</strong>——Hooks 很容易写出无限循环或破坏 git 历史,这节专门讲怎么避免。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">你已经写过 Hooks、配过自定义 MCP servers、用 SDK 嵌入过自己的 CLI——可以跳过,但建议留下 Hooks 那一节当 reference。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/claude-code-in-action" target="_blank">anthropic.skilljar.com/claude-code-in-action</a></div>
+    </div>
+
+    <h2><span class="pre">11 · Build</span>Introduction to Agent Skills — 教 Claude 一次,后面次次都能用</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 11 · ★</div>
+          <h3>Agent Skills 入门</h3>
+          <span class="en-title">Introduction to Agent Skills — Reusable markdown instructions</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-build">BUILD</span>
+          <span class="badge time">~30 min</span>
+          <span class="badge">6 模块</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val">Skill 是<strong>「装着说明书的文件夹」</strong>——SKILL.md + 可选脚本和资源。把一个可重复的工作流(写邮件 / 跑测试 / 转 PDF / 部署...)教 Claude 一次,后面会话直接复用。这门课教写 SKILL.md frontmatter、写描述、组织目录、分发、排错。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">用 Claude Code 用得有重复痛点的人。每次跟 Claude 解释同一个工作流超过 3 次,就该写成 Skill。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>What are skills? — 定义和价值</li>
+          <li>Creating your first skill — 写第一个 SKILL.md</li>
+          <li>Configuration and multi-file skills — 复杂结构</li>
+          <li>Skills vs. other Claude Code features — 跟 CLAUDE.md / Hooks / Subagents 区分</li>
+          <li>Sharing skills — repo / plugin / 企业分发</li>
+          <li>Troubleshooting skills — 触发失败 / 优先级冲突 / 运行错误</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val"><strong>开发者主线上 ROI 最高的 30 分钟</strong>。Skill 是 Claude Code 真正能「沉淀团队知识」的机制——比 CLAUDE.md 灵活,比 Hooks 简单,比 Subagent 轻量。看完能立刻把团队的「老带新」内容固化下来。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">你已经发布过 5 个以上的 Skills、写过 plugin manifest、能在 Skill 跟 Subagent 之间随意选——可以跳。否则建议看。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/introduction-to-agent-skills" target="_blank">anthropic.skilljar.com/introduction-to-agent-skills</a></div>
+    </div>
+
+    <h2><span class="pre">12 · Build</span>Introduction to Subagents — 把任务拆给隔离的小代理</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 12</div>
+          <h3>子代理入门</h3>
+          <span class="en-title">Introduction to Subagents — Isolated context windows for focused tasks</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-build">BUILD</span>
+          <span class="badge time">~30 min</span>
+          <span class="badge">4 模块</span>
+          <span class="badge new">NEW</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val"><strong>Subagent</strong> = 「隔离上下文窗口的小代理」。主代理把任务派给 subagent,subagent 在自己干净的上下文里跑,完成后返回总结。课程讲 subagent 的机制、用 <code>/agents</code> 命令创建、设计模式(结构化输出 / 障碍上报 / 限制工具访问)、反模式。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">已经在用 Claude Code、感觉「主上下文越来越脏」「想并行处理多任务」的人。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>What are subagents? — 机制、什么时候 spin up 一个</li>
+          <li>Creating a subagent — <code>/agents</code> 命令</li>
+          <li>Designing effective subagents — 结构化输出 / 障碍上报 / 工具限制</li>
+          <li>Using subagents effectively — 用对的地方,常见反模式</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val">2026 年 4 月新课。<strong>Subagent 和 Skill 是互补的</strong>——Skill 是「教 Claude 怎么做」,Subagent 是「派 Claude 去做」。这门课「常见反模式」一节救命:很多人滥用 Subagent 反而拖慢主任务。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">你用 Claude Code 主要是单线任务,从不需要并行——可以晚点学。但如果你做过「让 Claude 分析整个 repo」「让它跑 N 个文件的批量重构」这种事,马上学。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/introduction-to-subagents" target="_blank">anthropic.skilljar.com/introduction-to-subagents</a></div>
+    </div>
+
+    <h2><span class="pre">13 · Foundation</span>Introduction to Claude Cowork — 让 Claude 直接动你的文件</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 13</div>
+          <h3>Claude Cowork 入门</h3>
+          <span class="en-title">Introduction to Claude Cowork — Claude works on your files and apps</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-foundation">FOUNDATION</span>
+          <span class="badge time">~45 min</span>
+          <span class="badge">5 模块</span>
+          <span class="badge new">NEW</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val">Cowork 是 Claude 桌面端的一个工作模式——你描述任务,Claude 在本地直接操作文件、文件夹、应用程序。跟 Chat(纯对话)的区别是「Claude 真的动手」。教全局指令、项目上下文、Skills、Plugins、Chrome/Microsoft 365 集成、安全实践。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">非技术角色但有重复文件工作的人:分析师、研究员、运营、财务、法务。也包括想用 Claude 做桌面自动化的开发者。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>Meet Claude Cowork — 什么是 Cowork / 设置 / 功能</li>
+          <li>Personalization — 全局指令 / 项目上下文 / Skills / Plugins</li>
+          <li>Expanding — Chrome 集成 / Microsoft 365 集成</li>
+          <li>Security & Collaboration — 安全实践 / Skills 验证 / 团队共享</li>
+          <li>Cowork Quiz</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val">2026 年新出。<strong>首个面向非技术角色的官方课</strong>。「安全实践」一节(Skills 验证)对企业部署很关键——别人写的 Skill 你怎么判断能不能信。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">你只用 Claude 做 Chat / Code,从不让它动本地文件。或者你已经在用 Cowork 做日常任务、知道 Plugin 怎么装。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/introduction-to-claude-cowork" target="_blank">anthropic.skilljar.com/introduction-to-claude-cowork</a></div>
+    </div>
+
+    <div class="sharp">
+      <span class="tag">尖锐共识 · SHARP TAKE</span>
+      <p>开发者主线的<strong>最优路径是 09 → 10 → 11</strong>(2.5h),拿到「会用 + 进阶 + 沉淀」。如果你已经用 Claude Code 用熟了,跳到 10 + 11 + 12(2h),把进阶能力、Skills 沉淀、Subagent 并行三件套补齐。Cowork(13)是单独的产品线,跟编码主线没关系——只在你需要 Claude 帮你管理桌面文件时学。</p>
+    </div>
+
+    <div class="chapter-nav">
+      <div class="nav-item"><span class="meta">← 上一章</span><a href="#t2">轨道 2 · AI 素养</a></div>
+      <div class="nav-item right"><span class="meta">下一章 →</span><a href="#t4">轨道 4 · API & MCP</a></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 轨道 4 · API & MCP -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section data-route="t4">
+  <div class="page-narrow">
+
+    <div class="topbar">
+      <a href="#t3">← 轨道 3</a>
+      <div class="center">The Academy Field Notes</div>
+      <a href="#t5">轨道 5 →</a>
+    </div>
+
+    <div class="chapter-head">
+      <div class="kicker">轨道 4 · API & PROTOCOL · 3 门课 · 约 10h</div>
+      <h1>API 与协议 — <em>Building with Claude API</em> 是巨无霸</h1>
+      <p class="dek">如果你要拿 Claude 搭产品,这条轨道是必修。Building with the Claude API 一门就 8.1 小时、84 课时、10 份测验,是 Academy 上时长最长的课。MCP 入门 + 进阶是两门轻量课(各 1.5h),教你怎么搭对接 Claude 的协议层。</p>
+    </div>
+
+    <h2><span class="pre">14 · Build · 巨无霸</span>Building with the Claude API — 84 课时、10 测验、8.1 小时</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 14 · ★ 巨无霸</div>
+          <h3>Claude API 开发</h3>
+          <span class="en-title">Building with the Claude API — End-to-end SDK & integration</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-build">BUILD</span>
+          <span class="badge time">~8.1h</span>
+          <span class="badge">11 模块 / 84 课</span>
+          <span class="badge">10 测验</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val">Claude API 完整工程闭环。从 API 认证 → 多轮对话 → System Prompt → 流式传输 → 结构化输出 → <strong>Prompt Evaluation</strong>(怎么评估 prompt 质量) → <strong>Prompt Engineering</strong>(4 条原则) → <strong>Tool Use</strong>(11 节工具调用) → <strong>RAG</strong>(7 节检索增强) → <strong>Claude 高级特性</strong>(Extended Thinking / Vision / PDF / Citations / Prompt Caching) → <strong>MCP</strong> → <strong>Anthropic Apps</strong> → <strong>Agents & Workflows</strong>(并行 / 链式 / 路由 / Agent 四模式)。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">用 Python 后端搭 LLM 产品的工程师。前置要求:Python 熟练 + JSON 基础。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>1. Intro — 欢迎 / Claude 模型概览</li>
+          <li>2. Accessing the API — 9 课 + 1 测验(API key / 多轮 / system / temperature / 流式 / 结构化)</li>
+          <li>3. Prompt Evaluations — 8 课 + 1 测验(评估工作流 / 测试数据集 / 模型评分 / 代码评分)</li>
+          <li>4. Prompt Engineering — 6 课 + 1 测验(清晰直接 / 具体 / XML 标签 / 给例子)</li>
+          <li>5. Tool Use — 11 课 + 1 测验(工具模式 / 多工具 / 细粒度调用 / Text Editor / Web Search)</li>
+          <li>6. RAG & Agentic Search — 7 课(分块 / Embedding / 完整流程 / BM25 / 多索引)</li>
+          <li>7. Features of Claude — 8 课 + 1 测验(Extended Thinking / Vision / PDF / Citations / Prompt Caching × 3 节 / Code Execution)</li>
+          <li>8. Model Context Protocol — 10 课 + 1 测验(完整覆盖 Tool/Resource/Prompt 三原语)</li>
+          <li>9. Anthropic Apps — 4 课(Claude Code 集成 / MCP 增强)</li>
+          <li>10. Agents & Workflows — 8 课 + 1 测验(<strong>并行 / 链式 / 路由 / Agent 四种模式</strong>)</li>
+          <li>11. Final Assessment + Wrap-up</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val">Academy 唯一的<strong>工程级深度课</strong>。8.1 小时不算长——同样深度的内容在 Coursera / Udemy 卖 200 美元起。<strong>Prompt Evaluations 模块特别值钱</strong>——大部分人不会评估 prompt,结果上线后翻车。Module 10 的「Agents & Workflows 四模式」是建多 agent 系统的范本。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">不写后端代码就直接跳过。如果你只想看 MCP 部分,看课程 15+16 更精简。如果你只想看 Agent 模式,看 Module 10 + 这本笔记的 <a href="#core">「精华提炼」</a> 第 6 节即可。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/claude-with-the-anthropic-api" target="_blank">anthropic.skilljar.com/claude-with-the-anthropic-api</a></div>
+    </div>
+
+    <h2><span class="pre">15 · Build</span>Introduction to Model Context Protocol — 三原语 Tool / Resource / Prompt</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 15</div>
+          <h3>MCP 入门</h3>
+          <span class="en-title">Introduction to Model Context Protocol</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-build">BUILD</span>
+          <span class="badge time">~1.5h</span>
+          <span class="badge">4 模块</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val">MCP(Model Context Protocol)是 Anthropic 开放的标准,让 Claude 和外部服务对接。<strong>三大原语</strong>:<strong>Tools</strong>(模型主动调用)、<strong>Resources</strong>(应用控制提供)、<strong>Prompts</strong>(用户调用模板)。这门用 Python SDK 教你搭服务端、连客户端、用 MCP Inspector 调试。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">Python 开发者,要让 Claude 接入自己公司内部系统的人。前置:Python + JSON/HTTP 基础。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>Introduction — Welcome / Introducing MCP / MCP clients</li>
+          <li>Hands-on with MCP Servers — Setup / Defining tools / Server Inspector</li>
+          <li>Connecting with MCP Clients — 实现客户端 / Resources / Prompts</li>
+          <li>Final Assessment + MCP Review</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val">轻量、聚焦、好学。「<strong>tools 是 model-controlled、resources 是 app-controlled、prompts 是 user-controlled</strong>」这个分层是 MCP 的灵魂——3 小时看清楚 MCP 设计哲学。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">你已经发布过 MCP server / 在用 MCP SDK 写过 client——可以直接跳到 Advanced Topics。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/introduction-to-model-context-protocol" target="_blank">anthropic.skilljar.com/introduction-to-model-context-protocol</a></div>
+    </div>
+
+    <h2><span class="pre">16 · Advanced</span>MCP: Advanced Topics — Sampling / Roots / Streamable HTTP</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 16</div>
+          <h3>MCP 进阶</h3>
+          <span class="en-title">Model Context Protocol: Advanced Topics</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-advanced">ADVANCED</span>
+          <span class="badge time">~1.5h</span>
+          <span class="badge">3 模块</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val">进阶四题:<strong>Sampling</strong>(server 反向请求 client 调 LLM)、<strong>Log/Progress Notifications</strong>(实时反馈)、<strong>Roots</strong>(文件访问权限边界)、<strong>StreamableHTTP Transport</strong>(取代旧 SSE 的传输层,生产级)。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">已经会基础 MCP、要把它部署到生产环境的人。需要 Python async + HTTP 协议知识。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>Introduction</li>
+          <li>Core MCP Features — Sampling / Notifications / Roots(每个都带 walkthrough)</li>
+          <li>Transport & Communication — JSON message types / STDIO transport / StreamableHTTP transport / StreamableHTTP in depth / State and the StreamableHTTP transport</li>
+          <li>Assessment + Wrapping Up</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val"><strong>StreamableHTTP 那一节硬核但必看</strong>——决定了你的 MCP 服务能不能水平扩展。Sampling 这个机制设计很巧妙(server 让 client 帮忙调 LLM,绕开 server 自己持有 API key 的问题)。1.5 小时拿到生产级 MCP 部署能力。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">你只本地用 MCP / 没打算部署到生产 / 不在乎跨进程通信细节。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/model-context-protocol-advanced-topics" target="_blank">anthropic.skilljar.com/model-context-protocol-advanced-topics</a></div>
+    </div>
+
+    <div class="sharp">
+      <span class="tag">尖锐共识 · SHARP TAKE</span>
+      <p>API 轨道有一个隐性陷阱:<strong>课程 14(Building with Claude API)第 8 章 MCP 模块跟课程 15 几乎完全重叠</strong>(10 节课 vs 4 模块,内容覆盖度 90%+)。如果你只想要 MCP 入门,看 15 就够(1.5h vs 8.1h)。如果你要做完整 API 工程,看 14,中间 MCP 部分快速过即可。Anthropic 这种「同样的内容打包在不同课」的做法是为了让两条轨道都自包含——这意味着<strong>不要把 14、15 都刷完整,会重叠 1+ 小时</strong>。</p>
+    </div>
+
+    <div class="chapter-nav">
+      <div class="nav-item"><span class="meta">← 上一章</span><a href="#t3">轨道 3 · 开发者</a></div>
+      <div class="nav-item right"><span class="meta">下一章 →</span><a href="#t5">轨道 5 · 云部署</a></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 轨道 5 · 云部署 -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section data-route="t5">
+  <div class="page-narrow">
+
+    <div class="topbar">
+      <a href="#t4">← 轨道 4</a>
+      <div class="center">The Academy Field Notes</div>
+      <a href="#core">精华提炼 →</a>
+    </div>
+
+    <div class="chapter-head">
+      <div class="kicker">轨道 5 · CLOUD · 2 门课 · 各约 8h</div>
+      <h1>云平台部署 — Bedrock 和 Vertex AI,<em>选其一</em></h1>
+      <p class="dek">两门课结构跟 Building with Claude API 高度重叠(80%+),差别只在<strong>云接入层</strong>。如果你公司用 AWS,选 Bedrock 版;用 GCP,选 Vertex 版。<strong>不要刷完两门</strong>——这是 Academy 内容重叠最严重的两门。</p>
+    </div>
+
+    <div class="callout red">
+      <span class="tag">★ 重要说明</span>
+      <strong>这两门课 ≈ Building with Claude API 的「云栈版」</strong>。模块结构(Intro / Working with API / Prompt Eval / Prompt Engineering / Tool Use / RAG / Features / MCP / Agents / Final)几乎一致,差异在云接入(Bedrock 用 AWS IAM、Vertex 用 GCP ADC)和企业级合规(数据驻留、私有部署、SLA)。
+    </div>
+
+    <h2><span class="pre">17 · Cloud</span>Claude with Amazon Bedrock — AWS 栈的 Claude</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 17</div>
+          <h3>AWS Bedrock 上的 Claude</h3>
+          <span class="en-title">Claude with Amazon Bedrock</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-build">BUILD</span>
+          <span class="badge time">~8h</span>
+          <span class="badge">10 模块</span>
+          <span class="badge">AWS 合作认证</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val">跟 Building with Claude API 同结构,但 API 接入层换成 AWS Bedrock(IAM 角色 / Bedrock runtime / region 选择)。Tool Use 模块包含 Bedrock 特有的 batch tool。Agents 模块包含 Computer Use(让 Claude 操作 UI)。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">企业架构师 / SRE / 用 AWS 栈的工程师。原本是给 AWS 员工的内部认证课,现在公开。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>1. Course Introduction + Claude Models Overview</li>
+          <li>2. Working with the API — 12 节(含 Bedrock 接入)</li>
+          <li>3. Prompt Evaluations — 8 节</li>
+          <li>4. Prompt Engineering — 7 节</li>
+          <li>5. Tool Use — 13 节(含 Batch tool / Flexible tool extraction)</li>
+          <li>6. RAG — 10 节(含 Reranking / Contextual retrieval)</li>
+          <li>7. Features of Claude — 8 节</li>
+          <li>8. MCP — 12 节</li>
+          <li>9. Agents — 9 节(含 Computer Use / Parallelizing Claude Code / Automated debugging)</li>
+          <li>10. Final Assessment + Wrap-up</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val">如果你公司用 AWS 又必须刷 Anthropic 培训,这门可以替代 Building with Claude API——内容更完整,而且讲了 Bedrock 特有的部署细节。<strong>「Computer Use」一节</strong>(让 Claude 操作 UI)Building with Claude API 主线没有,只在云课里。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">你不用 AWS,或者已经学了 Building with Claude API——Bedrock 特有的部分占比不到 15%,ROI 不高。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/claude-in-amazon-bedrock" target="_blank">anthropic.skilljar.com/claude-in-amazon-bedrock</a></div>
+    </div>
+
+    <h2><span class="pre">18 · Cloud</span>Claude with Google Cloud Vertex AI — GCP 栈的 Claude</h2>
+
+    <div class="course-card">
+      <div class="course-head">
+        <div class="title-block">
+          <div class="num">课程 18</div>
+          <h3>GCP Vertex AI 上的 Claude</h3>
+          <span class="en-title">Claude with Google Cloud's Vertex AI</span>
+        </div>
+        <div class="badges">
+          <span class="badge lvl-build">BUILD</span>
+          <span class="badge time">~8h</span>
+          <span class="badge">9 模块</span>
+        </div>
+      </div>
+      <div class="course-body">
+        <div class="field"><div class="key">讲什么</div><div class="val">跟 Bedrock 版结构镜像,但接入层换成 GCP Vertex AI(ADC 凭据 / Vertex endpoint / region 选择)。Tool Use 模块包含 Batch tool / Text edit tool / Web search tool。Agents 模块包含 Computer Use / Parallelization / Chaining / Routing 四种 workflow 模式。</div></div>
+        <div class="field"><div class="key">给谁</div><div class="val">企业架构师 / SRE / 用 GCP 栈的工程师。</div></div>
+        <div class="field"><div class="key">章节</div><div class="val"><ul>
+          <li>1. Introduction — Welcome + Claude 模型概览</li>
+          <li>2. Accessing Claude with the API — 含 Vertex AI Setup</li>
+          <li>3. Prompt Evaluation</li>
+          <li>4. Prompt Engineering Techniques</li>
+          <li>5. Tool Use with Claude — 含 Batch tool / Text edit / Web search</li>
+          <li>6. Retrieval Augmented Generation — 含 BM25 / Reranking / Contextual retrieval</li>
+          <li>7. Features of Claude — Extended Thinking / Vision / PDF / Citations / Prompt Caching</li>
+          <li>8. Model Context Protocol</li>
+          <li>9. Anthropic Apps & Agents — Computer Use / 四种 workflow 模式 / Final Assessment</li>
+        </ul></div></div>
+        <div class="field judgement"><div class="key">我的判断</div><div class="val">跟 Bedrock 版基本对称。<strong>选哪个看你公司的云栈</strong>。GCP 版的 Vertex AI 设置部分对接 ADC 凭据流程更标准,如果你在 GCP 上选这版。</div></div>
+        <div class="field skip"><div class="key">跳过条件</div><div class="val">你不用 GCP,或者已经学了 Building with Claude API / Bedrock 版。</div></div>
+      </div>
+      <div class="course-link">→ <a href="https://anthropic.skilljar.com/claude-with-google-vertex" target="_blank">anthropic.skilljar.com/claude-with-google-vertex</a></div>
+    </div>
+
+    <div class="sharp">
+      <span class="tag">尖锐共识 · SHARP TAKE</span>
+      <p>这两门是 Academy 里<strong>最赤裸的「让企业刷认证」课</strong>——结构跟 Building with Claude API 完全镜像,只换了云接入层。如果你公司有 AWS / GCP 认证要求,刷一门拿证;如果没有,直接选 Building with Claude API 主菜,云接入层网上文档 30 分钟搞定。<strong>把 17、18 都刷的人,大概率没意识到自己在做无效学习</strong>——8 小时同样内容刷两遍,只为多一张证。</p>
+    </div>
+
+    <div class="chapter-nav">
+      <div class="nav-item"><span class="meta">← 上一章</span><a href="#t4">轨道 4 · API & MCP</a></div>
+      <div class="nav-item right"><span class="meta">下一章 →</span><a href="#core">精华提炼</a></div>
+    </div>
+
+  </div>
+</section>
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 精华提炼 · 6 个核心概念 -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section data-route="core">
+  <div class="page-narrow">
+
+    <div class="topbar">
+      <a href="#t5">← 轨道 5</a>
+      <div class="center">The Academy Field Notes</div>
+      <a href="#paths">学习路径 →</a>
+    </div>
+
+    <div class="chapter-head">
+      <div class="kicker">精华提炼 · 6 CORE IDEAS</div>
+      <h1>看完这一章 ≈ 拿到 <em>18 门课</em>的<em>核心知识</em></h1>
+      <p class="dek">这 6 个概念贯穿了 Academy 几乎所有课。把它们用中文一次讲清楚——下次再看任何 Anthropic 资料,你都能立刻对号入座。不要跳过这一章,这是这本笔记的真正价值所在。</p>
+    </div>
+
+    <h2><span class="pre">核心 1 · METHODOLOGY</span>4D 框架 — 跟 AI 打交道的元方法论</h2>
+
+    <p>整个 AI Fluency 轨道(6 门课)都在讲这一个东西。本质上,它把「人和 AI 协作」拆成 4 个动作,让你能精确说出「哪一步出了问题」。</p>
+
+    <div class="four-d">
+      <div class="d-card">
+        <div class="letter">D</div>
+        <div class="en">Delegation · 委派</div>
+        <h4>把任务交给 AI</h4>
+        <div class="desc">判断<strong>这件事该不该让 AI 做</strong>。识别哪些任务适合 AI(重复、可结构化、容错高),哪些必须人做(高风险决策、原创判断、需要责任归属)。</div>
+      </div>
+      <div class="d-card">
+        <div class="letter">D</div>
+        <div class="en">Description · 描述</div>
+        <h4>把想要的讲清楚</h4>
+        <div class="desc">prompt 工程的本质——<strong>给足上下文、明确产出格式、举例</strong>。说不清楚的任务,AI 做不好不是它的错。</div>
+      </div>
+      <div class="d-card">
+        <div class="letter">D</div>
+        <div class="en">Discernment · 辨别</div>
+        <h4>评估 AI 的输出</h4>
+        <div class="desc">看到结果不要照单全收——<strong>它哪里对、哪里编、哪里漏</strong>。AI 越流畅,越容易让你跳过这一步。</div>
+      </div>
+      <div class="d-card">
+        <div class="letter">D</div>
+        <div class="en">Diligence · 勤勉</div>
+        <h4>对结果负责</h4>
+        <div class="desc">输出最终归你署名。<strong>把关、保密、合规、伦理</strong>是你的事。AI 不会替你坐牢。</div>
+      </div>
+    </div>
+
+    <p>4D 不是孤立的 4 个动作,而是<strong>两个循环</strong>:</p>
+
+    <ul>
+      <li><strong>Description-Discernment 循环</strong> — 写 prompt → 看结果 → 改 prompt → 再看,直到对。这是<em>具体任务层</em>的迭代。</li>
+      <li><strong>Delegation-Diligence 循环</strong> — 选任务 → 让 AI 做 → 监督 → 调整任务边界。这是<em>责任和分工层</em>的循环。</li>
+    </ul>
+
+    <div class="callout">
+      <span class="tag">★ 这套框架的用处</span>
+      不在于它说了多么新的东西(每个老 prompt 工程师都知道这些)。在于<strong>给团队提供一套共同语言</strong>——下次说「这个 prompt 不行」,你可以精确说「是 Description 没讲清,还是 Discernment 没做」。一个团队 prompt 协作,有 4D 词汇 vs 没有,效率差好几倍。
+    </div>
+
+    <h2><span class="pre">核心 2 · AGENT MECHANICS</span>Agentic Loop — 编码代理跟聊天助手的本质区别</h2>
+
+    <p>Claude Code 101 / Claude Code in Action 反复强调:Claude Code 不是「能写代码的聊天助手」,是 <strong>Agent</strong>(代理)。Agent 跑的是一个三步循环:</p>
+
+    <pre>┌─────────────────────────────────────────────────┐
+│   ① Gather Context  →  ② Take Action  →  ③ Verify Work   │
+│        (收集上下文)        (采取行动)         (验证结果)        │
+└─────────────────────────────────────────────────┘
+                        ↑                                       │
+                        └───────── loop ─────────────────────┘</pre>
+
+    <ul>
+      <li><strong>① Gather Context</strong> — 读文件、列目录、跑 grep、查 git log、看 CLAUDE.md / Skills。<em>它在动手前先看清现场。</em></li>
+      <li><strong>② Take Action</strong> — 编辑文件、跑命令、调 MCP 工具、提 PR。<em>真正的动作发生在这里。</em></li>
+      <li><strong>③ Verify Work</strong> — 跑测试、看输出、对比 diff、检查 lint。<em>它自己审自己的活。</em></li>
+    </ul>
+
+    <p>循环回到 ① 是因为 ③ 的结果改变了上下文(测试失败了 / 文件变了),需要重新收集情况再决定下一步。<strong>这个循环就是「Agent」的定义</strong>——能自主感知-行动-验证-再行动的系统。</p>
+
+    <div class="sharp">
+      <span class="tag">尖锐共识 · SHARP TAKE</span>
+      <p>大部分人用 Claude Code 出问题,根源是<strong>没意识到这是 Agent 而不是 Chat</strong>。Chat 习惯是「问问题→拿答案」,Agent 模式是「描述任务→看它跑→在关键节点确认」。你跟 Agent 互动的最佳姿势是<em>「监工」</em>,不是<em>「点菜」</em>。</p>
+    </div>
+
+    <h2><span class="pre">核心 3 · WORKFLOW</span>Explore → Plan → Code → Commit — Claude Code 哲学</h2>
+
+    <p>这是 Claude Code 推荐的<strong>四阶段工作流</strong>。Claude Code 101 反复讲这个,因为它把 Agentic Loop 落到了具体可操作的步骤。</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>阶段</th><th>该做什么</th><th>该用的工具</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>① Explore</strong><br><span class="en">勘察</span></td>
+          <td>读相关文件、看现有代码风格、查 git 历史、识别约束。不写一行代码。</td>
+          <td>Read / Glob / Grep / git log</td>
+        </tr>
+        <tr>
+          <td><strong>② Plan</strong><br><span class="en">规划</span></td>
+          <td>用 <strong>Plan Mode</strong>(只读模式)让 Claude 先输出实施计划。你审一遍,定下范围。</td>
+          <td>Plan Mode + 用户确认</td>
+        </tr>
+        <tr>
+          <td><strong>③ Code</strong><br><span class="en">编码</span></td>
+          <td>按 Plan 执行。可以用 <strong>Auto-Accept</strong>(自动接受编辑)加速,但要在 Plan 已确认的前提下。</td>
+          <td>Edit / Write / Bash</td>
+        </tr>
+        <tr>
+          <td><strong>④ Commit</strong><br><span class="en">提交</span></td>
+          <td>跑测试 + lint + 类型检查 → 写 commit message → 提交。让 Agent 自己审一遍 diff 后再提。</td>
+          <td>Bash(npm test / git commit)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>三种 Approval Mode 用在哪一阶段</h3>
+
+    <ul>
+      <li><strong>Plan Mode</strong>(只读) — 用在 <em>Explore + Plan</em>。Claude 只能读、不能改,你审完再让它进入 Code 阶段。</li>
+      <li><strong>Manual</strong>(每步确认) — 用在 <em>第一次接触陌生代码库</em>。每个编辑都要你点确认,慢但安全。</li>
+      <li><strong>Auto-Accept</strong>(自动接受) — 用在 <em>Plan 已确认 + 你信任 Claude 在这个范围内不会乱来</em>。最快,但只有 Plan 充分时才用。</li>
+    </ul>
+
+    <div class="callout red">
+      <span class="tag">★ 常见错误</span>
+      跳过 Explore + Plan,直接让 Claude「写一个 X」——结果它没看上下文,写出风格不一致、跟现有代码冲突的版本。<strong>Explore 看似浪费时间,实际是节省时间</strong>。
+    </div>
+
+    <h2><span class="pre">核心 4 · DISAMBIGUATION</span>Skills / Subagents / Hooks / MCP — 4 个东西怎么分</h2>
+
+    <p>Claude Code 有 4 种主要的「自定义机制」,新人最容易混。区分清楚这 4 个,你才能在合适的场景选合适的工具。</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>机制</th>
+          <th>本质</th>
+          <th>什么时候用</th>
+          <th>怎么用</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Skill</strong></td>
+          <td>装着 SKILL.md 的文件夹,教 Claude <em>「怎么做某类任务」</em></td>
+          <td>有可重复工作流,3 次以上要解释同一个流程</td>
+          <td>写 SKILL.md + description,Claude 看到匹配场景自动加载</td>
+        </tr>
+        <tr>
+          <td><strong>Subagent</strong></td>
+          <td>带<em>独立上下文窗口</em>的小代理,主代理派任务给它</td>
+          <td>任务能切片、要并行、想保持主上下文干净</td>
+          <td><code>/agents</code> 命令创建,主代理调用</td>
+        </tr>
+        <tr>
+          <td><strong>Hook</strong></td>
+          <td><em>事件触发的脚本</em>(PreToolUse / PostToolUse / UserPromptSubmit 等)</td>
+          <td>要在每次特定动作前后强制跑某个检查 / 注入逻辑</td>
+          <td>settings.json 里配,bash 脚本执行</td>
+        </tr>
+        <tr>
+          <td><strong>MCP</strong></td>
+          <td><em>外部协议</em>,让 Claude 接入外部系统(数据库 / API / 内部服务)</td>
+          <td>要让 Claude 读你公司的私有数据 / 跑外部工具</td>
+          <td>搭 MCP Server(Python SDK),Claude 连上后能调用</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>关键判断:遇到一个需求该用哪个?</h3>
+
+    <ul>
+      <li>「希望 Claude 知道<strong>怎么做某件事</strong>」(写邮件、跑测试、转 PDF) → <strong>Skill</strong></li>
+      <li>「希望 Claude<strong>派一个分身去做某件事</strong>,主线不被打断」 → <strong>Subagent</strong></li>
+      <li>「希望每次特定动作前后<strong>都强制做某个检查</strong>」(commit 前跑 lint、edit 后自动 format) → <strong>Hook</strong></li>
+      <li>「希望 Claude 能<strong>访问外部系统</strong>」(查 Linear、读 PostgreSQL、调内部 API) → <strong>MCP</strong></li>
+    </ul>
+
+    <div class="callout green">
+      <span class="tag">★ 组合用</span>
+      它们<strong>不是互斥的</strong>。一个完整的高级用法:写一个 Skill 教 Claude「怎么发布到 Production」,Skill 里调用一个 MCP server 访问 deploy 系统,Skill 在 Subagent 里跑(主代理保持干净),整个过程靠 Hook 在 commit 前强制做安全扫描。这 4 个机制各管一段,叠加起来才是 Claude Code 的真正威力。
+    </div>
+
+    <h2><span class="pre">核心 5 · PRODUCTION</span>Prompt Caching + Extended Thinking — API 工程级技巧</h2>
+
+    <p>这两个是 Building with Claude API / Bedrock / Vertex 三门课都讲的<strong>生产级优化</strong>。不懂这两个,你的 API 账单会比应该贵 3–10 倍,响应也慢得多。</p>
+
+    <h3>Prompt Caching · 五条规则</h3>
+
+    <p>原理:把 prompt 里重复的前缀部分缓存住,后续请求只算「新增部分」的 token,价格降到原价的 10%。规则:</p>
+
+    <ol>
+      <li><strong>缓存的是前缀</strong> — 必须从消息开头的 system / 第一条 user message 开始,中间不能断。改后面的内容不破坏前面的缓存。</li>
+      <li><strong>最小 1024 tokens</strong>(Claude Sonnet 上),小于这个不缓存。</li>
+      <li><strong>5 分钟 TTL</strong> — 写完 5 分钟没人用就过期,下次重新缓存。可付费延长到 1 小时。</li>
+      <li><strong>缓存创建有写入费</strong>(原价的 1.25 倍),命中后才便宜。一次性请求别开缓存,反而贵。</li>
+      <li><strong>用 <code>cache_control</code> 字段</strong>显式标记要缓存的内容块。最多 4 个 breakpoint。</li>
+    </ol>
+
+    <p><strong>什么时候开:</strong>同一段长 system prompt / 工具定义 / 文档检索片段会在 5 分钟内被多次调用——开。一次性查询、prompt 每次都不一样——不开。</p>
+
+    <h3>Extended Thinking · 让 Claude 想得更深</h3>
+
+    <p>这是 Claude 在回答前<strong>先做内部「思考」</strong>的模式,适合复杂推理任务。课程教的关键点:</p>
+
+    <ul>
+      <li>用 <code>thinking</code> 参数开启,设 <code>budget_tokens</code> 控制思考长度。</li>
+      <li>思考内容会消耗 token,但<strong>输出质量在数学 / 多步推理 / 代码审查类任务上显著提升</strong>。</li>
+      <li>思考内容<em>不直接展示给用户</em>(默认),但你可以读 <code>thinking</code> 块拿到。</li>
+      <li>对简单任务别开——浪费 token 又慢。</li>
+    </ul>
+
+    <h2><span class="pre">核心 6 · ARCHITECTURE</span>Agent Workflow 四模式 + MCP 三原语</h2>
+
+    <p>建多 agent 系统时反复出现的两个分类。Building with Claude API 第 10 章 + 云课的 Agents 章节都讲这个。</p>
+
+    <h3>Agent Workflow 四种模式</h3>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>模式</th><th>结构</th><th>什么时候用</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Parallelization</strong><br><span class="en">并行</span></td>
+          <td>主任务拆成 N 个独立子任务,N 个 agent 同时跑,结果汇总</td>
+          <td>子任务彼此独立(分析 N 个文件、N 个产品对比、N 份候选人简历)</td>
+        </tr>
+        <tr>
+          <td><strong>Chaining</strong><br><span class="en">链式</span></td>
+          <td>第一个 agent 输出 → 第二个 agent 输入 → 第三个 ... 串行流水线</td>
+          <td>每一步依赖上一步结果(草稿 → 翻译 → 校对 → 排版)</td>
+        </tr>
+        <tr>
+          <td><strong>Routing</strong><br><span class="en">路由</span></td>
+          <td>一个「分流 agent」根据输入类型把任务派给不同 specialist agent</td>
+          <td>输入有多种类别(客服分流到「退款」「技术」「投诉」三个专用 agent)</td>
+        </tr>
+        <tr>
+          <td><strong>Agent</strong><br><span class="en">自主代理</span></td>
+          <td>单 agent 在循环里自己决定下一步用哪个工具,直到任务完成</td>
+          <td>路径不可预测的开放任务(写一个新功能、调试一个 bug)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <span class="tag">★ 怎么选</span>
+      Anthropic 的建议是<strong>能用 Workflow 就别上 Agent</strong>——前三种(Parallelization / Chaining / Routing)是结构化的,行为可预测、成本可控、容易调试。Agent 模式灵活但贵、慢、难追踪。先看你的任务能不能拆成前三种,只有真的拆不动才上 Agent。
+    </div>
+
+    <h3>MCP 三大原语</h3>
+
+    <p>MCP 协议让 Claude 跟外部系统对接。三种交互类型,各自的「控制权」不一样:</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>原语</th><th>谁控制</th><th>典型场景</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Tools</strong><br><span class="en">工具</span></td>
+          <td><strong>Model-controlled</strong> — Claude 自己决定何时调用</td>
+          <td>查数据库、调 API、跑命令、发邮件</td>
+        </tr>
+        <tr>
+          <td><strong>Resources</strong><br><span class="en">资源</span></td>
+          <td><strong>Application-controlled</strong> — 应用主动提供,Claude 引用</td>
+          <td>提供文件内容、配置、文档、上下文数据</td>
+        </tr>
+        <tr>
+          <td><strong>Prompts</strong><br><span class="en">提示</span></td>
+          <td><strong>User-controlled</strong> — 用户从模板里选</td>
+          <td>预设的常用任务模板(/translate /summarize /review)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>区分这三种的关键:<strong>「谁决定何时使用」</strong>。Tools 是 LLM 主动调,Resources 是应用塞给 LLM,Prompts 是用户从菜单选。设计 MCP server 时,先想清楚每个能力归哪一类——错位会让 Claude 用不上你的服务。</p>
+
+    <div class="sharp">
+      <span class="tag">尖锐共识 · SHARP TAKE</span>
+      <p>这 6 个核心概念是<strong>看完 18 门课的真正收益</strong>。剩下的内容(具体 API 调用、特定云接入流程、人群版的应用场景)在你需要时查文档就够,不必死记。把这 6 个概念吃透,你就有了<em>整个 Anthropic 生态的心智模型</em>——以后看任何新课、新文档、新博客,都能立刻判断它在讲哪个核心机制的延伸。</p>
+    </div>
+
+    <div class="chapter-nav">
+      <div class="nav-item"><span class="meta">← 上一章</span><a href="#t5">轨道 5 · 云部署</a></div>
+      <div class="nav-item right"><span class="meta">下一章 →</span><a href="#paths">学习路径</a></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 学习路径 -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section data-route="paths">
+  <div class="page-narrow">
+
+    <div class="topbar">
+      <a href="#core">← 精华提炼</a>
+      <div class="center">The Academy Field Notes</div>
+      <a href="#glossary">术语速查 →</a>
+    </div>
+
+    <div class="chapter-head">
+      <div class="kicker">学习路径 · LEARNING PATHS</div>
+      <h1>按角色选路径 — 不要看完<em>所有</em>18 门</h1>
+      <p class="dek">不同角色应该走不同路径,这一章给 5 种典型角色各一条最优路径。<strong>关键不是「都看」,是「该跳过哪些」</strong>。每条路径标了总时长,以及为什么是这个顺序。</p>
+    </div>
+
+    <div class="path-card">
+      <div class="role">PATH 01 · DEVELOPER</div>
+      <h3>开发者 — 写后端 / 工具 / 自动化的工程师</h3>
+      <div class="summary">主线是 Claude Code 三件套 + Agent Skills + API 深度课。总时长约 11 小时,看完是 Anthropic 生态完整工程能力。</div>
+      <ol>
+        <li><strong>AI Capabilities and Limitations</strong>(45m)<span class="why">先建底层心智模型,后面看任何课都更快理解 → 看 <a href="#t1">轨道 1</a></span></li>
+        <li><strong>Claude Code 101</strong>(1h)<span class="why">学 Agent Loop 和 Explore→Plan→Code→Commit 工作流 → 看 <a href="#t3">轨道 3</a></span></li>
+        <li><strong>Claude Code in Action</strong>(1h)<span class="why">Hooks / SDK / Custom Commands / GitHub 集成 → 看 <a href="#t3">轨道 3</a></span></li>
+        <li><strong>Introduction to Agent Skills</strong>(30m)<span class="why">最高 ROI 的 30 分钟——开始用 SKILL.md 沉淀团队知识 → 看 <a href="#t3">轨道 3</a></span></li>
+        <li><strong>Introduction to Subagents</strong>(30m)<span class="why">主代理上下文越写越脏时,该学这个 → 看 <a href="#t3">轨道 3</a></span></li>
+        <li><strong>Building with the Claude API</strong>(8.1h)<span class="why">巨无霸,完整 API 工程闭环 → 看 <a href="#t4">轨道 4</a></span></li>
+      </ol>
+      <p style="font-size:13.5px; color: var(--ink-mid); margin-top: 14px; padding-top: 10px; border-top: 1px dotted var(--line-soft);"><strong>明确跳过:</strong>AI Fluency 6 门(对程序员太学术);AWS Bedrock / GCP Vertex(跟 API 课重叠 85%);Claude Cowork(非编码场景);Teaching AI Fluency(不培训别人);MCP Advanced(等真要部署生产 MCP 时再补)。</p>
+    </div>
+
+    <div class="path-card">
+      <div class="role">PATH 02 · PM / DESIGNER / NON-ENG</div>
+      <h3>产品经理 / 设计师 / 运营 — 不写代码但每天用 Claude</h3>
+      <div class="summary">不学 API,学怎么把 Claude 嵌进日常工作流。重点在 Claude 桌面端 + Cowork + 4D 方法论。总时长约 3.5 小时。</div>
+      <ol>
+        <li><strong>Claude 101</strong>(45m)<span class="why">先看 Claude 桌面端全家桶 → 看 <a href="#t1">轨道 1</a></span></li>
+        <li><strong>AI Capabilities and Limitations</strong>(45m)<span class="why">理解 LLM 怎么思考 → 看 <a href="#t1">轨道 1</a></span></li>
+        <li><strong>Introduction to Claude Cowork</strong>(45m)<span class="why">让 Claude 直接操作你的文件 + 应用 → 看 <a href="#t3">轨道 3</a></span></li>
+        <li><strong>AI Fluency: Framework & Foundations</strong>(1.1h)<span class="why">4D 方法论,给团队提供共同语言 → 看 <a href="#t2">轨道 2</a></span></li>
+        <li><strong>这本笔记的「精华提炼」核心 1 + 4</strong>(15m)<span class="why">4D 框架 + Skills 概念,补 Cowork 入门没讲透的 → 看 <a href="#core">精华提炼</a></span></li>
+      </ol>
+      <p style="font-size:13.5px; color: var(--ink-mid); margin-top: 14px; padding-top: 10px; border-top: 1px dotted var(--line-soft);"><strong>明确跳过:</strong>所有 Claude Code 课(不写代码);Building with Claude API / Bedrock / Vertex(不搭后端);MCP 两门(不写协议);5 个 AI Fluency 人群版(03 主课已经覆盖核心思想)。</p>
+    </div>
+
+    <div class="path-card">
+      <div class="role">PATH 03 · EDUCATOR</div>
+      <h3>教育者 — 大学老师 / 培训师 / 教学设计师</h3>
+      <div class="summary">先学 4D 方法论本体,再学专门的教学应用版,最后学怎么教别人 4D。总时长约 2.5 小时。</div>
+      <ol>
+        <li><strong>Claude 101</strong>(45m)<span class="why">作为讲师,你得知道 Claude 全家桶 → 看 <a href="#t1">轨道 1</a></span></li>
+        <li><strong>AI Fluency: Framework & Foundations</strong>(1.1h)<span class="why">4D 框架本体 → 看 <a href="#t2">轨道 2</a></span></li>
+        <li><strong>AI Fluency for Educators</strong>(24m)<span class="why">4D 在教学场景的应用——课程设计 / 作业设计 → 看 <a href="#t2">轨道 2</a></span></li>
+        <li><strong>Teaching AI Fluency</strong>(30m)<span class="why">教别人 4D 的方法论 + 评估方式 → 看 <a href="#t2">轨道 2</a></span></li>
+      </ol>
+      <p style="font-size:13.5px; color: var(--ink-mid); margin-top: 14px; padding-top: 10px; border-top: 1px dotted var(--line-soft);"><strong>明确跳过:</strong>所有开发者课;所有 API 课;所有云课;AI Fluency for Students/Nonprofits/Small Businesses(不是你的目标人群)。</p>
+    </div>
+
+    <div class="path-card">
+      <div class="role">PATH 04 · BIZ / OPS</div>
+      <h3>业务 / 运营 — NGO、小企业、合规、HR 等专业岗</h3>
+      <div class="summary">从基础认知开始,选一个跟身份对应的 Fluency 版本。重点是「能用 + 知道边界」。总时长约 2 小时。</div>
+      <ol>
+        <li><strong>Claude 101</strong>(45m)<span class="why">桌面端会用 → 看 <a href="#t1">轨道 1</a></span></li>
+        <li><strong>AI Capabilities and Limitations</strong>(45m)<span class="why">知道 LLM 在哪些事上不靠谱 → 看 <a href="#t1">轨道 1</a></span></li>
+        <li><strong>挑一门 AI Fluency 人群版:</strong>
+          <ul style="margin-top: 6px; padding-left: 18px;">
+            <li>NGO → <em>AI Fluency for Nonprofits</em>(30m)</li>
+            <li>小企业 → <em>AI Fluency for Small Businesses</em>(40m)</li>
+            <li>其他业务岗 → <em>AI Fluency Framework & Foundations</em> 主课(1.1h)</li>
+          </ul>
+        </li>
+      </ol>
+      <p style="font-size:13.5px; color: var(--ink-mid); margin-top: 14px; padding-top: 10px; border-top: 1px dotted var(--line-soft);"><strong>明确跳过:</strong>所有开发者课、API 课、云课、MCP 课。如果有空再加 Claude Cowork(45m)看看桌面自动化。</p>
+    </div>
+
+    <div class="path-card">
+      <div class="role">PATH 05 · DECISION MAKER</div>
+      <h3>决策者 — VP / 总监 / 创始人 / 投资人,不写代码但要拍板</h3>
+      <div class="summary">不需要懂细节,要懂边界、风险、ROI。重点是这本笔记的「精华提炼」,加 2 门基础课。总时长 1.5 小时。</div>
+      <ol>
+        <li><strong>AI Capabilities and Limitations</strong>(45m)<span class="why">底层心智模型——LLM 在什么事上靠谱、什么事上不靠谱 → 看 <a href="#t1">轨道 1</a></span></li>
+        <li><strong>Claude 101</strong>(快速过 30m)<span class="why">了解 Claude 产品矩阵,跳过细节实操 → 看 <a href="#t1">轨道 1</a></span></li>
+        <li><strong>这本笔记的「精华提炼」全章</strong>(30m)<span class="why">6 个核心概念 = 18 门课的浓缩 → 看 <a href="#core">精华提炼</a></span></li>
+      </ol>
+      <p style="font-size:13.5px; color: var(--ink-mid); margin-top: 14px; padding-top: 10px; border-top: 1px dotted var(--line-soft);"><strong>明确跳过:</strong>全部 18 门里除 01、02 之外的 16 门。你不需要会写,你需要知道你的工程师/产品在干什么。这本笔记的「精华提炼」就是给你看的。</p>
+    </div>
+
+    <div class="sharp">
+      <span class="tag">尖锐共识 · SHARP TAKE</span>
+      <p>看一遍这 5 条路径你会发现:<strong>没有任何一种角色需要看完全部 18 门课</strong>。最多的开发者也只看 6 门(11h)。<strong>「看完所有课」是浪费时间</strong>——同样的内容在不同课里反复出现,而且 80% 的价值集中在前 3–5 门。给自己挑一条路径开始,看完后再回来加新课,比一头扎进 22 小时视频高效得多。</p>
+    </div>
+
+    <div class="chapter-nav">
+      <div class="nav-item"><span class="meta">← 上一章</span><a href="#core">精华提炼</a></div>
+      <div class="nav-item right"><span class="meta">下一章 →</span><a href="#glossary">术语速查</a></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 术语速查 -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section data-route="glossary">
+  <div class="page-narrow">
+
+    <div class="topbar">
+      <a href="#paths">← 学习路径</a>
+      <div class="center">The Academy Field Notes</div>
+      <a href="#home">首页 ↑</a>
+    </div>
+
+    <div class="chapter-head">
+      <div class="kicker">附录 · GLOSSARY · 25 条</div>
+      <h1>术语速查 — <em>看课</em>和<em>看文档</em>都用得上</h1>
+      <p class="dek">25 个 Anthropic 生态里反复出现的术语,中英对照 + 一句话定义。看任何课、读任何文档时,这一页可以当 reference。</p>
+    </div>
+
+    <div class="glossary">
+      <div class="term">
+        <div class="en">Agent</div>
+        <div class="cn">代理 / 智能体</div>
+        <div class="def">能自主跑「感知-行动-验证」循环的 AI 系统。区别于 Chat(被动应答)。Claude Code 是 Agent 不是 Chat。</div>
+      </div>
+      <div class="term">
+        <div class="en">Agentic Loop</div>
+        <div class="cn">代理循环</div>
+        <div class="def">Gather Context → Take Action → Verify Work 三步循环。Agent 的核心机制。</div>
+      </div>
+      <div class="term">
+        <div class="en">Skill / SKILL.md</div>
+        <div class="cn">能力包 / 能力说明书</div>
+        <div class="def">装着 SKILL.md 的文件夹,教 Claude 怎么做某一类任务。Claude 自动识别场景加载。</div>
+      </div>
+      <div class="term">
+        <div class="en">Subagent</div>
+        <div class="cn">子代理</div>
+        <div class="def">带独立上下文窗口的小代理,主代理派任务给它。用 <code>/agents</code> 命令创建。</div>
+      </div>
+      <div class="term">
+        <div class="en">Hook</div>
+        <div class="cn">钩子</div>
+        <div class="def">特定事件触发的脚本(PreToolUse / PostToolUse / UserPromptSubmit 等)。在 settings.json 里配。</div>
+      </div>
+      <div class="term">
+        <div class="en">MCP · Model Context Protocol</div>
+        <div class="cn">模型上下文协议</div>
+        <div class="def">Anthropic 开放标准,让 Claude 跟外部系统对接。三原语:Tool / Resource / Prompt。</div>
+      </div>
+      <div class="term">
+        <div class="en">CLAUDE.md</div>
+        <div class="cn">项目说明书</div>
+        <div class="def">放在项目根的 Markdown 文件,Claude Code 启动时自动读,作为「项目级 system prompt」。</div>
+      </div>
+      <div class="term">
+        <div class="en">Plan Mode</div>
+        <div class="cn">规划模式</div>
+        <div class="def">Claude Code 的只读模式——只能看不能改,产出实施计划让你审。用在 Explore + Plan 阶段。</div>
+      </div>
+      <div class="term">
+        <div class="en">Auto-Accept</div>
+        <div class="cn">自动接受</div>
+        <div class="def">Claude Code 的快速模式——自动接受所有编辑,不打断你。Plan 已确认时才用。</div>
+      </div>
+      <div class="term">
+        <div class="en">Approval Mode</div>
+        <div class="cn">批准模式</div>
+        <div class="def">Claude Code 的三种交互模式:Plan / Manual / Auto-Accept,控制 Claude 行动前是否要确认。</div>
+      </div>
+      <div class="term">
+        <div class="en">Prompt Caching</div>
+        <div class="cn">提示缓存</div>
+        <div class="def">把重复的 prompt 前缀缓存,后续请求只算新增部分 token,降到原价 10%。5 分钟 TTL。</div>
+      </div>
+      <div class="term">
+        <div class="en">Extended Thinking</div>
+        <div class="cn">深度思考</div>
+        <div class="def">Claude 在回答前先做内部「思考」的模式,适合复杂推理。用 budget_tokens 控制思考长度。</div>
+      </div>
+      <div class="term">
+        <div class="en">Tool Use</div>
+        <div class="cn">工具调用</div>
+        <div class="def">Claude 通过返回 tool_use block 让客户端执行某个函数,拿到结果后继续生成。Agent 的基础能力。</div>
+      </div>
+      <div class="term">
+        <div class="en">System Prompt</div>
+        <div class="cn">系统提示</div>
+        <div class="def">最前面的指令,告诉 Claude 它是谁、做什么、有什么约束。区别于用户消息。</div>
+      </div>
+      <div class="term">
+        <div class="en">RAG · Retrieval Augmented Generation</div>
+        <div class="cn">检索增强生成</div>
+        <div class="def">先检索相关文档片段,再让 Claude 基于这些片段回答。让 Claude 能用你的私有数据。</div>
+      </div>
+      <div class="term">
+        <div class="en">Streaming</div>
+        <div class="cn">流式响应</div>
+        <div class="def">API 边生成边返回,而不是等全部完成再返回。改善用户体验。</div>
+      </div>
+      <div class="term">
+        <div class="en">Sampling (MCP)</div>
+        <div class="cn">采样(MCP 概念)</div>
+        <div class="def">MCP server 反向请求 client 调 LLM 的机制。绕开 server 自己持有 API key。</div>
+      </div>
+      <div class="term">
+        <div class="en">Roots (MCP)</div>
+        <div class="cn">根路径(MCP 概念)</div>
+        <div class="def">MCP 里定义文件访问权限边界的机制——告诉 client 哪些路径可读。</div>
+      </div>
+      <div class="term">
+        <div class="en">StreamableHTTP</div>
+        <div class="cn">可流式 HTTP 传输</div>
+        <div class="def">MCP 推荐的生产级传输层,取代旧的 SSE。支持水平扩展、无状态。</div>
+      </div>
+      <div class="term">
+        <div class="en">Cowork</div>
+        <div class="cn">协同模式</div>
+        <div class="def">Claude 桌面端的一个工作模式——直接操作你本地的文件、应用。区别于 Chat 模式。</div>
+      </div>
+      <div class="term">
+        <div class="en">Plugin</div>
+        <div class="cn">插件</div>
+        <div class="def">Claude Code / Cowork 的能力扩展包,通常打包 Skills + Hooks + MCP servers + Commands。</div>
+      </div>
+      <div class="term">
+        <div class="en">Connector</div>
+        <div class="cn">连接器</div>
+        <div class="def">Claude 桌面端预置的工具连接(Gmail / Calendar / Linear 等),无需自己搭 MCP。</div>
+      </div>
+      <div class="term">
+        <div class="en">4D Framework</div>
+        <div class="cn">4D 框架</div>
+        <div class="def">Delegation / Description / Discernment / Diligence,人和 AI 协作的元方法论。</div>
+      </div>
+      <div class="term">
+        <div class="en">Workflow vs Agent</div>
+        <div class="cn">工作流与代理</div>
+        <div class="def">Workflow 是预定义路径(并行/链式/路由),Agent 是自主循环。能用 Workflow 就别用 Agent。</div>
+      </div>
+      <div class="term">
+        <div class="en">Computer Use</div>
+        <div class="cn">计算机操作</div>
+        <div class="def">Claude 通过截图 + 鼠标键盘事件操作整个桌面 UI 的能力。当前还是 Beta。</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="tag">★ 不在列表的术语</span>
+      <strong>Vertex AI / Bedrock / IAM / ADC</strong> 这些云相关术语没收录——它们是 AWS / GCP 的通用概念,不是 Anthropic 特有的,查云厂商文档更准。
+    </div>
+
+    <div class="chapter-nav">
+      <div class="nav-item"><span class="meta">← 上一章</span><a href="#paths">学习路径</a></div>
+      <div class="nav-item right"><span class="meta">回到</span><a href="#home">首页 ↑</a></div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // SPA hash routing
+  function showRoute() {
+    var rawHash = location.hash.replace('#', '');
+    var route = rawHash || 'home';
+    if (!document.querySelector('section[data-route="' + route + '"]')) {
+      route = 'home';
+    }
+    document.querySelectorAll('section[data-route]').forEach(function(s) {
+      s.classList.toggle('active', s.dataset.route === route);
+    });
+    window.scrollTo(0, 0);
+    var titles = {
+      home: 'Anthropic Academy 学院全景笔记',
+      t1: '轨道 1 · 入门基础',
+      t2: '轨道 2 · AI 素养',
+      t3: '轨道 3 · 开发者深度',
+      t4: '轨道 4 · API & MCP',
+      t5: '轨道 5 · 云部署',
+      core: '精华提炼 · 6 个核心概念',
+      paths: '学习路径 · 按角色选',
+      glossary: '术语速查 · 25 条'
+    };
+    document.title = (titles[route] || titles.home) + ' · The Academy Field Notes';
+  }
+  window.addEventListener('hashchange', showRoute);
+  window.addEventListener('DOMContentLoaded', showRoute);
+</script>
+
+</body>
+</html>
