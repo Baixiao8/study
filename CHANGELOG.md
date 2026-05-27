@@ -5,14 +5,18 @@
 
 ---
 
-## 2026-05-27 · 新增 skills-building-guide 子项目
+## 2026-05-27 · 新增 skills-building-guide 子项目（v0.1 → v0.3）
 
-### 新增：Skills 构建指南中文化笔记
+### 新增：Skills 构建指南中文化对照本
 
-- 新建 [`skills-building-guide/`](./skills-building-guide/)，对 Anthropic 官方 33 页《The Complete Guide to Building Skills for Claude》做中文重写
+- 新建 [`skills-building-guide/`](./skills-building-guide/)，对 Anthropic 官方 33 页《The Complete Guide to Building Skills for Claude》做中文化
 - 设计风格沿用「运动健康」项目的 newsprint 报纸版式，针对教程体裁做了适配
-- v0.1 完成首页索引（`index.html`）和第 1 章基础概念（`ch1-fundamentals.html`）
-- 后续 ch2 ~ ch6 五章在风格确认后批量推进
+
+### 迭代历程（同日三个版本）
+
+- **v0.1**：首页 + 第 1 章样本，B 路线（中文重写）
+- **v0.2**：风格切换到 C 路线（英文原句保留 + 中文导读对照），首页和第 1 章返工
+- **v0.3**：合并为单文件 SPA + hash 路由（点章节卡新开标签页），全 6 章 + 3 附录补齐
 
 ---
 
